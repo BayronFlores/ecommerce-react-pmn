@@ -1,0 +1,64 @@
+.order-container {
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.order-table-container {
+  margin-top: 2rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-thead {
+  background-color: #adadad;
+  text-align: left;
+}
+
+.order-th,
+.order-td {
+  padding: 12px;
+}
+
+.order-id {
+  color: #1a73e8;
+  font-weight: bold;
+}
+
+.order-status {
+  font-weight: bold;
+}
+
+.order-link {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.order-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+.order-page-button {
+  padding: 6px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid orange;
+  background-color: white;
+  color: orange;
+}
+
+.order-page-button.active {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  border: none;
+}

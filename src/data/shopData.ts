@@ -1,0 +1,82 @@
+// src/data/shopData.ts
+
+export const categorias = [
+  'Computadores y Portátiles',
+  'Accesorios de Computadora',
+  'Teléfonos Inteligentes',
+  'Auriculares',
+  'Accesorios Móviles',
+  'Consolas de Videojuegos',
+  'Cámaras y Fotografía',
+  'TV y Electrodomésticos',
+  'Relojes y Accesorios',
+  'GPS y Navegación',
+  'Tecnología Vestible',
+];
+
+export const productos = [
+  {
+    id: 1,
+    name: 'Auriculares Inalámbricos TOZO T6',
+    price: '$36',
+    rating: 4,
+    reviews: 994,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 2,
+    name: 'Samsung Galaxy S21 5G',
+    price: '$80',
+    rating: 5,
+    reviews: 798,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 3,
+    name: 'Auriculares Over-Ear con USB',
+    price: '$2300',
+    rating: 4,
+    reviews: 740,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 4,
+    name: 'Trípode Polaroid 57” para Foto/Video',
+    price: '$220',
+    rating: 4,
+    reviews: 556,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 5,
+    name: 'Impresora Dell Optiplex 7000x7480',
+    price: '$150',
+    rating: 4,
+    reviews: 426,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 6,
+    name: 'Cable HDMI Amazon Basics (18 Gbps, 4K)',
+    price: '$70',
+    rating: 4,
+    reviews: 600,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 7,
+    name: 'Mini Lavadora Portátil 11lbs – Modelo 18NMF',
+    price: '$250',
+    rating: 4,
+    reviews: 492,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+  {
+    id: 8,
+    name: 'Monitor Curvo Samsung 27” Full HD',
+    price: '$180',
+    rating: 5,
+    reviews: 312,
+    image: 'https://i.imgur.com/qRzMuqF.png',
+  },
+];
