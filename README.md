@@ -18,7 +18,8 @@ cd ecommerce-react-pmn
 Desde la terminal, ubicándote en la carpeta raíz del proyecto, ejecuta el siguiente comando para instalar las dependencias:
 
 - npm install
-  Una vez completada la instalación, puedes iniciar el proyecto en modo desarrollo con:
+
+Una vez completada la instalación, puedes iniciar el proyecto en modo desarrollo con:
 - npm run dev
 
 Esto abrirá la aplicación en http://localhost:5173
