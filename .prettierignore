@@ -1,0 +1,9 @@
+# Carpetas pesadas que no queremos formatear
+node_modules
+build
+dist
+out
+coverage
+public
+.env
+*.log

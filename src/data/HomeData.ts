@@ -1,5 +1,3 @@
-// src/data/homeData.ts
-
 export const benefits = [
   {
     icon: '🚚',

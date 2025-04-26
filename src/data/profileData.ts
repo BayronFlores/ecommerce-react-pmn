@@ -1,5 +1,3 @@
-// src/data/profileData.ts
-
 export const profileFormData = {
   displayName: 'Kevin',
   username: 'Display name',

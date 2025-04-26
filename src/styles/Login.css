@@ -1,150 +1,84 @@
-/* body {
-  background-image: url('../assets/fondo.jpg');
-  background-size: cover;
-  background-position: center;
-} */
+@import 'tailwindcss';
 
 .login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  padding: 20px;
+  @apply flex items-center justify-center h-[80vh] p-5;
 }
 
 .login-box {
-  width: 400px;
-  background: transparent;
-  border: 2px solid gray;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(15px);
-  padding: 40px 20px;
-  flex-direction: column;
+  @apply w-[400px] bg-transparent border-2 border-gray-500 rounded-2xl flex justify-center items-center backdrop-blur-md p-10 flex-col;
 }
 
 .h2 {
-  font-size: 2em;
-  color: #fff;
-  text-align: center;
+  @apply text-2xl text-white text-center;
 }
 
 .input-box {
-  width: 100%;
-  margin: 30px 0;
-  border-bottom: 2px solid #fff;
-  position: relative;
+  @apply w-full my-8 border-b-2 border-white relative;
 }
 
 .input-box label {
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  transform: translateY(-50%);
-  font-size: 1em;
-  color: #fff;
-  pointer-events: none;
-  transition: 0.3s;
+  @apply absolute top-1/2 left-1 transform -translate-y-1/2 text-white text-base pointer-events-none transition-all duration-300;
 }
 
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
-  top: -10px;
-  font-size: 0.8em;
-  color: #00f7ff;
+  @apply -top-2 text-xs text-cyan-300;
 }
 
 .input-box input {
-  width: 100%;
-  height: 50px;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 1em;
-  color: #fff;
-  padding: 0 35px 0 5px;
+  @apply w-full h-[50px] bg-transparent border-none outline-none text-white text-base pl-1 pr-9;
 }
 
 .input-box .icon {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-  font-size: 1.2em;
+  @apply absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-xl;
 }
 
 .remember-forgot {
-  margin: -10px 0 20px;
-  font-size: 0.9em;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
+  @apply mt-[-10px] mb-5 text-sm text-white flex justify-between;
 }
 
 .remember-forgot label input {
-  margin-right: 5px;
+  @apply mr-1;
 }
 
 .remember-forgot a {
-  color: #fff;
-  text-decoration: none;
+  @apply text-white no-underline;
 }
 
 .remember-forgot a:hover {
-  text-decoration: underline;
+  @apply underline;
 }
 
 .button {
-  width: 100%;
-  height: 45px;
-  background: #fff;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 1em;
-  color: #000;
-  font-weight: 600;
-  transition: 0.3s;
+  @apply w-full h-[45px] bg-white border-none rounded-full cursor-pointer text-base text-black font-semibold transition-all duration-300;
 }
 
 .button:hover {
-  background: #ddd;
+  @apply bg-gray-300;
 }
 
 .register-link {
-  font-size: 0.9em;
-  color: #fff;
-  text-align: center;
-  margin: 20px 0 10px;
+  @apply text-sm text-white text-center my-5;
 }
 
 .register-link a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+  @apply text-white no-underline font-semibold;
 }
 
 .register-link a:hover {
-  text-decoration: underline;
+  @apply underline;
 }
 
 @media (max-width: 420px) {
   .login-box {
-    width: 100%;
-    padding: 30px 15px;
-    border-radius: 20px;
-    height: auto;
+    @apply w-full p-8 rounded-2xl h-auto;
   }
 
   .input-box {
-    width: 100%;
+    @apply w-full;
   }
 
   .login {
-    height: auto;
-    padding: 40px 10px;
+    @apply h-auto p-10;
   }
 }

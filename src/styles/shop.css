@@ -1,49 +1,47 @@
-/* src/components/shop.css */
+@import 'tailwindcss';
 
 .shop-container {
-  display: flex;
-  padding: 2rem;
+  @apply flex p-8;
 }
 
 .shop-sidebar {
-  width: 250px;
-  margin-right: 2rem;
+  @apply w-64 mr-8;
 }
 
 .shop-categories {
-  list-style: none;
-  padding-left: 0;
+  @apply list-none pl-0;
 }
 
 .shop-price-range {
-  width: 100%;
+  @apply w-full;
 }
 
 .shop-inputs {
-  display: grid;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  @apply grid gap-2 mt-2;
 }
 
 .shop-main {
-  flex: 1;
+  @apply flex-1;
 }
 
 .shop-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr));
-  gap: 1rem;
+  @apply grid grid-cols-4 gap-4;
 }
 
 .shop-product {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  background-color: #242424;
-  color: #fff;
+  @apply border border-gray-300 p-4 rounded-lg text-center bg-gray-800 text-white;
 }
 
 .shop-product img {
-  max-width: 100%;
+  @apply max-w-full;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  .shop-product {
+    @apply bg-gray-100 text-black;
+  }
 }

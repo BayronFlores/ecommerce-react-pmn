@@ -1,8 +1,12 @@
 import '../../styles/Profile.css';
-import AccountNav from '../../components/AccountNav';
-import { profileFormData } from '../../data/profileData';
+import AccountNav from '../../components/Layout/AccountNav';
+import useAuth from '../../hooks/useAuth';
 
 const Profile = () => {
+  const { user } = useAuth();
+
+  if (!user) return <p>Cargando datos del usuario...</p>;
+
   return (
     <div className="container">
       <AccountNav />
@@ -10,95 +14,105 @@ const Profile = () => {
         <div className="profile-card">
           <h2 className="profile-title">Account Setting</h2>
           <div className="profile-content">
-            {/* Imagen de perfil */}
             <div className="profile-image-wrapper">
               <img
-                src={profileFormData.profileImage}
+                src={user.profileImage || '/img/default-profile.png'}
                 alt="Profile"
                 className="profile-image"
               />
             </div>
 
-            {/* Formulario */}
             <form className="profile-form">
               <div>
                 <label>Display name</label>
                 <input
                   type="text"
-                  placeholder={profileFormData.displayName}
+                  value={user.displayName || ''}
+                  placeholder="Display Name"
                   className="profile-input"
+                  readOnly
                 />
               </div>
               <div>
                 <label>Username</label>
                 <input
                   type="text"
-                  placeholder={profileFormData.username}
+                  value={user.username || ''}
+                  placeholder="Username"
                   className="profile-input"
+                  readOnly
                 />
               </div>
               <div>
                 <label>Full Name</label>
                 <input
                   type="text"
-                  placeholder={profileFormData.fullName}
+                  value={user.name}
                   className="profile-input"
+                  readOnly
                 />
               </div>
               <div>
                 <label>Email</label>
                 <input
                   type="email"
-                  placeholder={profileFormData.email}
+                  value={user.email}
                   className="profile-input"
+                  readOnly
                 />
               </div>
               <div>
                 <label>Secondary Email</label>
                 <input
                   type="text"
-                  placeholder={profileFormData.secondaryEmail}
+                  value={user.secondaryEmail || ''}
                   className="profile-input"
+                  readOnly
                 />
               </div>
               <div>
                 <label>Phone Number</label>
                 <input
                   type="text"
-                  placeholder={profileFormData.phoneNumber}
+                  value={user.phoneNumber || ''}
                   className="profile-input"
+                  readOnly
                 />
               </div>
               <div>
                 <label>Country/Region</label>
-                <select className="profile-input">
-                  {profileFormData.countries.map((country) => (
-                    <option key={country}>{country}</option>
-                  ))}
-                </select>
+                <input
+                  type="text"
+                  value={user.country || ''}
+                  className="profile-input"
+                  readOnly
+                />
               </div>
               <div>
-                <label>States</label>
-                <select className="profile-input">
-                  {profileFormData.states.map((state) => (
-                    <option key={state}>{state}</option>
-                  ))}
-                </select>
+                <label>State</label>
+                <input
+                  type="text"
+                  value={user.state || ''}
+                  className="profile-input"
+                  readOnly
+                />
               </div>
               <div>
                 <label>Zip Code</label>
                 <input
                   type="text"
-                  placeholder={profileFormData.zipCode}
+                  value={user.zipCode || ''}
                   className="profile-input"
+                  readOnly
                 />
               </div>
             </form>
           </div>
 
-          {/* Botón guardar */}
           <div>
-            <button className="profile-save-button">SAVE CHANGES</button>
+            <button className="profile-save-button" disabled>
+              Guardar Cambios
+            </button>
           </div>
         </div>
       </div>

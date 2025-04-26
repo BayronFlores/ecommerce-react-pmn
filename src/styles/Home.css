@@ -1,238 +1,129 @@
+@import 'tailwindcss';
+
 .home-container {
-  font-family: sans-serif;
-  padding: 1rem;
-  width: 70%;
-  margin: auto;
+  @apply font-sans p-4 w-[70%] mx-auto;
 }
 
 .promo-section {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  @apply flex gap-4 flex-wrap;
 }
 
-/* Banner principal */
 .main-banner {
-  flex: 2;
-  background-color: #1e1e11;
-  border-radius: 8px;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 2px solid #fff;
+  @apply flex-2 bg-[#1e1e11] rounded-lg p-8 flex items-center justify-between border-2 border-white;
 }
 
 .main-banner-text {
-  max-width: 50%;
+  @apply max-w-1/2;
 }
 
 .main-banner-highlight {
-  color: #007bff;
-  font-weight: bold;
-  font-size: 14px;
+  @apply text-blue-500 font-bold text-sm;
 }
 
 .main-banner-title {
-  font-size: 28px;
-  margin: 0.5rem 0;
+  @apply text-2xl my-2;
 }
 
 .main-banner-desc {
-  margin-bottom: 1rem;
+  @apply mb-4;
 }
 
 .main-banner-image {
-  position: relative;
+  @apply relative;
 }
 
 .price-bubble {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: #00aaff;
-  color: #fff;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 16px;
+  @apply absolute -top-2 -right-2 bg-cyan-500 text-white rounded-full w-[60px] h-[60px] flex items-center justify-center font-bold text-base;
 }
 
-/* Ofertas laterales */
 .sidebar-offers {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @apply flex-1 flex flex-col gap-4;
 }
 
 .offer-card-dark,
 .offer-card-light {
-  background-color: #1e1e11;
-  color: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  position: relative;
-  border: 2px solid #fff;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+  @apply bg-[#1e1e11] text-white p-4 rounded-lg relative border-2 border-white h-[200px] flex flex-col justify-between overflow-hidden;
 }
 
-/* Ajustes individuales */
 .offer-card-dark h4,
 .offer-card-light h4 {
-  font-size: 14px;
-  margin: 0;
-  flex-shrink: 0;
+  @apply text-sm m-0 flex-shrink-0;
 }
 
 .offer-card-dark img,
 .offer-card-light img {
-  max-height: 80px;
-  object-fit: contain;
-  flex-shrink: 0;
-  width: 100%;
-  margin: 0.5rem 0;
+  @apply max-h-20 object-contain flex-shrink-0 w-full my-2;
 }
 
 .offer-card-dark .button-primary,
 .offer-card-light .button-primary {
-  font-size: 12px;
-  padding: 0.4rem 0.8rem;
-  flex-shrink: 0;
+  @apply text-xs py-2 px-4 flex-shrink-0;
 }
 
-/* Ajuste de la etiqueta de descuento */
 .discount-label {
-  background-color: #ffd700;
-  color: #000;
-  font-weight: bold;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 12px;
-  z-index: 1;
+  @apply bg-yellow-400 text-black font-bold py-1 px-2 rounded absolute top-2.5 left-2.5 text-xs z-10;
 }
 
 .offer-price {
-  color: #007bff;
-  font-size: 14px;
-  margin: 0.2rem 0;
+  @apply text-blue-500 text-sm my-1;
 }
 
-/* Beneficios */
 .benefits-section {
-  display: flex;
-  justify-content: space-around;
-  background-color: #1e1e11;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  border-radius: 8px;
-  flex-wrap: wrap;
-  gap: 1rem;
-  border: 2px solid #fff;
+  @apply flex justify-around bg-[#1e1e11] p-6 mt-8 rounded-lg flex-wrap gap-4 border-2 border-white;
 }
 
 .benefit {
-  min-width: 180px;
-  text-align: center;
+  @apply min-w-[180px] text-center;
 }
 
 .benefit-icon {
-  font-size: 24px;
-  margin-bottom: 0.5rem;
+  @apply text-2xl mb-2;
 }
 
 .benefit-title {
-  font-weight: bold;
+  @apply font-bold;
 }
 
 .benefit-desc {
-  color: #777;
+  @apply text-gray-500;
 }
 
-/* Botón reutilizable */
 .button-primary {
-  background-color: #ff6a00;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+  @apply bg-orange-500 text-white py-2 px-4 border-none rounded font-bold cursor-pointer;
 }
 
 .product-showcase {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 4rem;
-  justify-content: center;
+  @apply flex flex-wrap gap-6 mt-16 justify-center;
 }
 
 .product-card {
-  width: 250px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 1rem;
-  position: relative;
-  text-align: center;
-  background: #1e1e11;
+  @apply w-[250px] border border-gray-200 rounded-lg p-4 relative text-center bg-[#1e1e11];
 }
 
 .product-card img {
-  height: 120px;
-  object-fit: contain;
-  margin-bottom: 1rem;
+  @apply h-[120px] object-contain mb-4;
 }
 
 .product-title {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  height: 3rem;
-  overflow: hidden;
+  @apply text-sm mb-2 h-12 overflow-hidden;
 }
 
 .product-price {
-  font-weight: bold;
-  color: #1a8917;
+  @apply font-bold text-green-700;
 }
 
 .product-old-price {
-  text-decoration: line-through;
-  font-size: 0.8rem;
-  color: #888;
+  @apply line-through text-xs text-gray-500;
 }
 
-.discount-badge,
-.status-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: gold;
-  font-size: 0.7rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: bold;
+.discount-badge {
+  @apply absolute top-2 left-2 bg-yellow-400 text-xs py-0.5 px-1.5 rounded font-bold;
 }
 
 .status-badge {
-  top: 8px;
-  right: 8px;
-  left: auto;
-  background: crimson;
-  color: white;
+  @apply absolute top-2 right-2 bg-red-700 text-white text-xs py-0.5 px-1.5 rounded font-bold;
 }
 
 .sold-out {
-  opacity: 0.4;
+  @apply opacity-40;
 }

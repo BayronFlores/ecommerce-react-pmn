@@ -1,25 +1,17 @@
-/* src/components/Footer.css */
+@import 'tailwindcss';
 
 .footer {
-  background-color: #1e1e11;
-  padding: 1.5rem;
-  text-align: center;
-  border-top: 1px solid #dee2e6;
-  margin-top: 0;
+  @apply bg-[#1e1e11] p-6 text-center border-t border-gray-300 mt-0;
 }
 
 .footer-links {
-  margin-bottom: 0.5rem;
+  @apply mb-2;
 }
 
 .footer-links a {
-  margin: 0 1rem 0 0;
-  color: white;
-  text-decoration: none;
+  @apply mr-4 text-white no-underline;
 }
 
 .footer-text {
-  font-size: 0.875rem;
-  color: #6c757d;
-  margin-bottom: 0;
+  @apply text-sm text-gray-500 mb-0;
 }

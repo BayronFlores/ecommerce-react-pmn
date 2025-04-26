@@ -1,9 +1,14 @@
-// src/pages/Home.tsx
 import React from 'react';
 import '../styles/Home.css';
 import { benefits, productShowcase } from '../data/HomeData';
+import Button from '../components/UI/Button';
 
 const Home: React.FC = () => {
+  // Función para manejar el click del botón (por ejemplo, redirigir a una página de compra)
+  const handleButtonClick = () => {
+    alert('¡Comprando ahora!');
+  };
+
   return (
     <div className="home-container">
       {/* Sección de Promociones */}
@@ -11,22 +16,17 @@ const Home: React.FC = () => {
         {/* Banner principal */}
         <div className="main-banner">
           <div className="main-banner-text">
-            <span className="main-banner-highlight">
-              EL MEJOR LUGAR PARA JUGAR
-            </span>
+            <span className="main-banner-highlight">EL MEJOR LUGAR PARA JUGAR</span>
             <h2 className="main-banner-title">Consolas Xbox</h2>
             <p className="main-banner-desc">
-              Ahorra hasta un 50% en juegos seleccionados de Xbox. Obtén 3 meses
-              de PC Game Pass por $2 USD.
+              Ahorra hasta un 50% en juegos seleccionados de Xbox. Obtén 3 meses de PC Game Pass por
+              $2 USD.
             </p>
-            <button className="button-primary">COMPRAR AHORA →</button>
+            {/* Uso del componente Button */}
+            <Button text="COMPRAR AHORA →" onClick={handleButtonClick} />
           </div>
           <div className="main-banner-image">
-            <img
-              src="https://i.imgur.com/XHcmTFi.png"
-              alt="Xbox"
-              style={{ height: '180px' }}
-            />
+            <img src="https://i.imgur.com/XHcmTFi.png" alt="Xbox" style={{ height: '180px' }} />
             <div className="price-bubble">$299</div>
           </div>
         </div>
@@ -41,7 +41,8 @@ const Home: React.FC = () => {
               alt="Pixel"
               style={{ width: '100%', margin: '1rem 0' }}
             />
-            <button className="button-primary">COMPRAR AHORA</button>
+            {/* Uso del componente Button */}
+            <Button text="COMPRAR AHORA" onClick={handleButtonClick} />
           </div>
 
           <div className="offer-card-light">
@@ -52,7 +53,8 @@ const Home: React.FC = () => {
               alt="FlipBuds"
               style={{ width: '100%', height: '120px', objectFit: 'contain' }}
             />
-            <button className="button-primary">COMPRAR AHORA</button>
+            {/* Uso del componente Button */}
+            <Button text="COMPRAR AHORA" onClick={handleButtonClick} />
           </div>
         </div>
       </div>
@@ -67,23 +69,17 @@ const Home: React.FC = () => {
           </div>
         ))}
       </div>
+
       {/* Productos Destacados */}
       <div className="product-showcase">
         {productShowcase.map((p, i) => (
-          <div
-            key={i}
-            className={`product-card ${
-              p.status === 'SOLD OUT' ? 'sold-out' : ''
-            }`}
-          >
+          <div key={i} className={`product-card ${p.status === 'SOLD OUT' ? 'sold-out' : ''}`}>
             {p.discount && <div className="discount-badge">{p.discount}</div>}
             {p.status && <div className="status-badge">{p.status}</div>}
             <img src={p.image} alt={p.title} />
             <div className="product-title">{p.title}</div>
             <div className="product-price">{p.price}</div>
-            {p.oldPrice && (
-              <div className="product-old-price">{p.oldPrice}</div>
-            )}
+            {p.oldPrice && <div className="product-old-price">{p.oldPrice}</div>}
           </div>
         ))}
       </div>

@@ -1,5 +1,3 @@
-// src/data/shopData.ts
-
 export const categorias = [
   'Computadores y Portátiles',
   'Accesorios de Computadora',

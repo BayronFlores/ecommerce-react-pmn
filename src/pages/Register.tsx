@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Login.css'; // Asegúrate de importar el CSS
+import '../styles/Login.css'; 
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');

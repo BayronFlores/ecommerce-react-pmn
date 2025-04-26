@@ -1,4 +1,4 @@
-import AccountNav from '../../components/AccountNav';
+import AccountNav from '../../components/Layout/AccountNav';
 import { orders } from '../../data/ordersData';
 import '../../styles/OrderHistory.css';
 

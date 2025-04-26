@@ -1,23 +1,20 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { Outlet, useLocation } from 'react-router-dom';
+import Navbar from '../components/Layout/Navbar';
+import Footer from '../components/Layout/Footer';
 
 const PublicLayout = () => {
+  const location = useLocation();
+
+  // Si estamos en alguna ruta que comienza con "/admin", no mostramos navbar ni footer
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh', // cambia minHeight por height
-      }}
-    >
-      <Navbar />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <main style={{ flex: 1 }}>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+    <div>
+      {!isAdminRoute && <Navbar />}
+      <main style={{ flex: 1 }}>
+        <Outlet />
+      </main>
+      {!isAdminRoute && <Footer />}
     </div>
   );
 };

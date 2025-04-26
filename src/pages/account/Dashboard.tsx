@@ -1,11 +1,16 @@
-import AccountNav from '../../components/AccountNav';
+import AccountNav from '../../components/Layout/AccountNav';
 import '../../styles/Dashboard.css';
+import useAuth from '../../hooks/useAuth';
 
 const Dashboard = () => {
+  const { user } = useAuth();
+
+  if (!user) return <p>Cargando datos del usuario...</p>;
+
   return (
     <div className="dashboard-container">
       <AccountNav />
-      <h2 className="dashboard-heading">Hola, Kevin</h2>
+      <h2 className="dashboard-heading">Hola, {user.name}</h2>
       <p className="dashboard-paragraph">
         Desde el panel de control de tu cuenta, puedes verificar y ver
         fácilmente tus{' '}
@@ -16,7 +21,7 @@ const Dashboard = () => {
         <a href="#" className="dashboard-link">
           direcciones de envío y facturación
         </a>{' '}
-        y editar su{' '}
+        y editar tu{' '}
         <a href="#" className="dashboard-link">
           contraseña
         </a>{' '}
@@ -33,23 +38,26 @@ const Dashboard = () => {
           <h3 className="card-title">INFORMACIÓN DE LA CUENTA</h3>
           <div className="account-info">
             <img
-              src="https://i.imgur.com/7k12EPD.png"
+              src={user.profileImage || 'https://i.imgur.com/7k12EPD.png'}
               alt="Perfil"
               className="profile-img"
             />
             <div>
-              <strong>Kevin Gilbert</strong>
-              <div>Dacca -1207, Bangladesh</div>
+              <strong>{user.name}</strong>
+              <div>
+                {user.country} - {user.zipCode}, {user.state}
+              </div>
             </div>
           </div>
           <div>
-            <strong>Correo electrónico:</strong> kevin.gilbert@gmail.com
+            <strong>Correo electrónico:</strong> {user.email}
           </div>
           <div>
-            <strong>Sec Correo electrónico:</strong> kevin12345@gmail.com
+            <strong>Sec Correo electrónico:</strong>{' '}
+            {user.secondaryEmail || 'No disponible'}
           </div>
           <div>
-            <strong>Teléfono:</strong> +1-202-555-0118
+            <strong>Teléfono:</strong> {user.phoneNumber || 'No disponible'}
           </div>
           <button className="dashboard-button">EDITAR CUENTA</button>
         </div>
@@ -58,18 +66,18 @@ const Dashboard = () => {
         <div className="dashboard-card">
           <h3 className="card-title">DIRECCIÓN DE FACTURACIÓN</h3>
           <div>
-            <strong>Kevin Gilbert</strong>
+            <strong>{user.name}</strong>
           </div>
           <div className="address">
-            East Tejturi Bazar, Palabra Nº 04, Carretera Nº 13/x,
-            <br />
-            Casa Nº 1320/C, Piso Nº 5D, Dhaka -1200, Bangladesh
+            {/* Puedes incluir más campos si agregas dirección física completa en userData.ts */}
+            {user.state}, {user.country} - {user.zipCode}
           </div>
           <div>
-            <strong>Teléfono:</strong> +1-202-555-0118
+            <strong>Teléfono:</strong> {user.phoneNumber || 'No disponible'}
           </div>
           <div>
-            <strong>Correo electrónico:</strong> kevin12345@gmail.com
+            <strong>Correo electrónico:</strong>{' '}
+            {user.secondaryEmail || user.email}
           </div>
           <button className="dashboard-button">EDITAR DIRECCIÓN</button>
         </div>

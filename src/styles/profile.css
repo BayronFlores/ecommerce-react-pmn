@@ -1,60 +1,37 @@
+@import 'tailwindcss';
+
 .profile-container {
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  @apply p-8 flex justify-center;
 }
 
 .profile-card {
-  width: 70%;
-  background-color: #1e1e11;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  @apply w-7/10 bg-[#1e1e11] border border-gray-300 rounded-lg p-8 shadow-lg;
 }
 
 .profile-title {
-  margin-bottom: 1.5rem;
+  @apply mb-6;
 }
 
 .profile-content {
-  display: flex;
-  gap: 2rem;
+  @apply flex gap-8;
 }
 
 .profile-image-wrapper {
-  flex: 0 0 120px;
+  @apply flex-none w-30 h-30;
 }
 
 .profile-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
+  @apply w-30 h-30 rounded-full object-cover;
 }
 
 .profile-form {
-  flex: 1;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
+  @apply flex-1 grid gap-4 grid-cols-2;
 }
 
 .profile-input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-top: 0.3rem;
+  @apply w-full p-2 rounded-md border border-gray-300 mt-1;
 }
 
 .profile-save-button {
-  background-color: #ff6a00;
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 2rem;
+  @apply bg-[#ff6a00] text-white py-3 px-6 rounded-md font-bold cursor-pointer mt-8;
 }
