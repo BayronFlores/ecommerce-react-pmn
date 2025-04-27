@@ -4,6 +4,7 @@
   @apply flex gap-8 p-8 font-sans;
 }
 
+
 /* Tabla de productos */
 .cart-products {
   @apply flex-2 border border-gray-200 rounded-lg p-4 bg-[#242424] text-white;
@@ -35,7 +36,7 @@
 }
 
 .quantity-control {
-  @apply inline-flex items-center border border-gray-300 rounded;
+  @apply inline-flex items-center border border-gray-300 ;
 }
 
 .quantity-control button {
@@ -50,9 +51,7 @@
   @apply flex justify-between mt-4;
 }
 
-.cart-actions button {
-  @apply border border-blue-500 bg-transparent text-blue-500 py-2 px-4 rounded;
-}
+
 
 /* Totales y cupón */
 .cart-summary {

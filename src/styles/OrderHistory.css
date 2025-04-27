@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .order-container {
-  @apply p-4 font-sans;
+  @apply p-4 font-sans flex;
 }
 
 .order-table-container {
@@ -31,16 +31,4 @@
 
 .order-link {
   @apply text-blue-600 no-underline;
-}
-
-.order-pagination {
-  @apply flex justify-center items-center mt-6 gap-2;
-}
-
-.order-page-button {
-  @apply py-1.5 px-3 rounded-full cursor-pointer border border-orange-400 bg-white text-orange-400;
-}
-
-.order-page-button.active {
-  @apply bg-orange-400 text-white font-bold border-none;
 }

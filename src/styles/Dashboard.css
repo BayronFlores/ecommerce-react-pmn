@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .dashboard-container {
-  @apply p-4 font-sans text-white;
+  @apply p-4 font-sans text-white flex;
 }
 
 .dashboard-heading {

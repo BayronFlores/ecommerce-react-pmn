@@ -8,9 +8,12 @@ const Profile = () => {
   if (!user) return <p>Cargando datos del usuario...</p>;
 
   return (
-    <div className="container">
+    <div className="container flex">
+      {/* Sidebar */}
       <AccountNav />
-      <div className="profile-container">
+
+      {/* Content Area */}
+      <div className="profile-container flex-1 p-6">
         <div className="profile-card">
           <h2 className="profile-title">Account Setting</h2>
           <div className="profile-content">

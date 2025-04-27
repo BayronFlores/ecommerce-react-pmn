@@ -1,65 +1,55 @@
-import '../styles/shop.css';
-import { categorias, productos } from '../data/shopData';
+import { useState } from 'react';
+import SidebarFilters from '../components/shop/SidebarFilters';
+import TopBar from '../components/shop/TopBar';
+import ShopGrid from '../components/shop/ShopGrid';
+import Pagination from '../components/Layout/Pagination';
+import { productos } from '../data/productos';
 
 const Shop = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+  const [sortOption, setSortOption] = useState('Mas Popular');
+
+  const filterProducts = () => {
+    return productos
+      .filter((producto) => {
+        const matchesCategory = selectedCategory ? producto.category === selectedCategory : true;
+        const price = parseFloat(producto.price.replace('$', ''));
+        const matchesPrice = price >= priceRange.min && price <= priceRange.max;
+        const matchesSearch = producto.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchesCategory && matchesPrice && matchesSearch;
+      })
+      .sort((a, b) => {
+        const priceA = parseFloat(a.price.replace('$', ''));
+        const priceB = parseFloat(b.price.replace('$', ''));
+        if (sortOption === 'Precio más bajo') return priceA - priceB;
+        if (sortOption === 'Precio más alto') return priceB - priceA;
+        if (sortOption === 'Mas Popular') return b.reviews - a.reviews;
+        return 0;
+      });
+  };
+
   return (
-    <div className="shop-container">
-      {/* Barra lateral */}
-      <aside className="shop-sidebar">
-        <h3>Categoría</h3>
-        <ul className="shop-categories">
-          {categorias.map((cat) => (
-            <li key={cat}>
-              <label>
-                <input type="checkbox" /> {cat}
-              </label>
-            </li>
-          ))}
-        </ul>
-
-        <h3 style={{ marginTop: '2rem' }}>Rango de Precios</h3>
-        <input type="range" min={0} max={1000} className="shop-price-range" />
-        <div className="shop-inputs">
-          <input type="text" placeholder="Precio mínimo" />
-          <input type="text" placeholder="Precio máximo" />
+    <div className="min-h-screen bg-gray-100 p-4">
+      <TopBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        sortOption={sortOption}
+        setSortOption={setSortOption}
+      />
+      <div className="flex flex-col lg:flex-row">
+        <SidebarFilters
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+        />
+        <div className="w-full lg:w-3/4 p-4">
+          <ShopGrid productos={filterProducts()} />
+          <Pagination />
         </div>
-      </aside>
-
-      {/* Contenido principal */}
-      <main className="shop-main">
-        <div style={{ marginBottom: '1rem' }}>
-          <strong>Filtros activos:</strong> Dispositivos Electrónicos × 5
-          Estrellas ×
-        </div>
-
-        <div style={{ marginBottom: '1rem' }}>
-          <label>
-            Ordenar por:
-            <select style={{ marginLeft: '0.5rem' }}>
-              <option>Más popular</option>
-              <option>Menor precio</option>
-              <option>Mejor calificados</option>
-            </select>
-          </label>
-        </div>
-
-        <div className="shop-grid">
-          {productos.map((producto) => (
-            <div className="shop-product" key={producto.id}>
-              <img src={producto.image} alt={producto.name} />
-              <h4>{producto.name}</h4>
-              <p>
-                {'★'.repeat(producto.rating)}
-                {'☆'.repeat(5 - producto.rating)} ({producto.reviews})
-              </p>
-              <strong>{producto.price}</strong>
-              <div>
-                <button style={{ marginTop: '0.5rem' }}>Ver más</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
+      </div>
     </div>
   );
 };

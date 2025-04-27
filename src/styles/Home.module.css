@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+
+.homeContainer {
+  @apply font-sans p-4 w-[70%] mx-auto;
+}
+
+/* Sección Promociones */
+.promoSection {
+  @apply flex gap-4 flex-wrap;
+}
+
+/* Banner Principal */
+.mainBanner {
+  @apply flex-2 bg-gray-400 rounded-lg p-8 flex items-center justify-between border-2 border-white;
+}
+
+.mainBannerText {
+  @apply max-w-1/2;
+}
+
+.mainBannerHighlight {
+  @apply text-blue-500 font-bold text-sm;
+}
+
+.mainBannerTitle {
+  @apply text-2xl my-2 text-black;
+}
+
+.mainBannerDesc {
+  @apply mb-4 text-black;
+}
+
+.mainBannerImage {
+  @apply relative;
+}
+
+.priceBubble {
+  @apply absolute -top-2 -right-2 bg-cyan-500 text-white rounded-full w-[60px] h-[60px] flex items-center justify-center font-bold text-base;
+}
+
+/* Ofertas Laterales */
+.sidebarOffers {
+  @apply flex-1 flex flex-col gap-4;
+}
+
+.offerCardRow {
+  @apply bg-gray-400 text-white p-4 rounded-lg flex flex-wrap items-center border-2 border-white gap-4;
+}
+
+.offerInfo {
+  @apply flex-1 flex flex-col justify-center;
+}
+
+.offerTitle {
+  @apply text-sm font-bold m-2 text-white;
+}
+
+.offerPrice {
+  @apply text-blue-500 text-sm m-2;
+}
+
+.offerImageContainer {
+  @apply flex-shrink-0 w-[150px] h-[200px] flex items-center justify-center;
+}
+
+.offerImage {
+  @apply max-w-full max-h-full object-contain;
+}
+
+/* .discountLabel {
+  @apply bg-yellow-400 text-black font-bold py-1 px-2 rounded absolute -top-2 -left-2 text-xs;
+} */
+
+/* Beneficios */
+.benefitsSection {
+  @apply flex justify-around bg-gray-900 p-6 mt-8 rounded-lg flex-wrap gap-4 border-2 border-white;
+}
+
+.benefit {
+  @apply min-w-[180px] text-center;
+}
+
+.benefitIcon {
+  @apply text-2xl mb-2;
+}
+
+.benefitTitle {
+  @apply font-bold;
+}
+
+.benefitDesc {
+  @apply text-gray-500;
+}
+
+/* Productos Destacados */
+.productShowcase {
+  @apply flex flex-wrap gap-6 mt-16 justify-center;
+}
+
+.productCard {
+  @apply w-[250px] border border-gray-200 rounded-lg p-4 relative text-center bg-gray-900;
+}
+
+.productImage {
+  @apply h-[120px] object-contain mb-4;
+}
+
+.productTitle {
+  @apply text-sm mb-2 h-12 overflow-hidden;
+}
+
+.productPrice {
+  @apply font-bold text-green-700;
+}
+
+.productOldPrice {
+  @apply line-through text-xs text-gray-500;
+}
+
+.discountBadge {
+  @apply absolute top-2 left-2 bg-yellow-400 text-xs py-0.5 px-1.5 rounded font-bold;
+}
+
+.statusBadge {
+  @apply absolute top-2 right-2 bg-red-700 text-white text-xs py-0.5 px-1.5 rounded font-bold;
+}
+
+.soldOut {
+  @apply opacity-40;
+}

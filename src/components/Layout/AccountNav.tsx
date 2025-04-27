@@ -11,29 +11,41 @@ const AccountNav = () => {
   };
 
   return (
-    <nav style={{ marginBottom: '1rem', borderBottom: '1px solid #ccc' }}>
-      <Link to="/Cuenta" style={{ marginRight: '1rem' }}>
-        🏠 Inicio
-      </Link>
-      <Link to="/Cuenta/Ordenes" style={{ marginRight: '1rem' }}>
-        📦 Pedidos
-      </Link>
-      <Link to="/Cuenta/Perfil" style={{ marginRight: '1rem' }}>
-        👤 Perfil
-      </Link>
-      <button
-        onClick={handleLogout}
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'red',
-          cursor: 'pointer',
-          textDecoration: 'underline',
-        }}
-      >
-        🚪 Cerrar sesión
-      </button>
-    </nav>
+    <div className="h-screen w-50 bg-white relative flex overflow-hidden">
+      {/* Sidebar */}
+      <aside className="h-full w-50 flex flex-col space-y-10 items-start justify-center relative bg-gray-800 text-white">
+        <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+          <Link to="/Cuenta" className="flex items-center space-x-4 px-4 py-2">
+            <i className="fas fa-home text-2xl"></i>
+            <span className="text-xs">Inicio</span>
+          </Link>
+        </div>
+
+        <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+          <Link to="/Cuenta/Ordenes" className="flex items-center space-x-4 px-4 py-2">
+            <i className="fas fa-box-open text-2xl"></i>
+            <span className="text-xs">Órdenes</span>
+          </Link>
+        </div>
+
+        <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+          <Link to="/Cuenta/Perfil" className="flex items-center space-x-4 px-4 py-2">
+            <i className="fas fa-user text-2xl"></i>
+            <span className="text-xs">Perfil</span>
+          </Link>
+        </div>
+
+        <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+          <button
+            onClick={handleLogout}
+            className="text-red-500 flex items-center space-x-4 px-4 py-2"
+          >
+            <i className="fas fa-sign-out-alt text-2xl"></i>
+            <span className="text-xs">Cerrar sesión</span>
+          </button>
+        </div>
+      </aside>
+    </div>
   );
 };
 

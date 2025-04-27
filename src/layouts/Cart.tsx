@@ -1,8 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Usamos useNavigate en lugar de useHistory
 import '../styles/cart.css';
-import { cartItems } from '../data/cartItems';
+import { cartItems as initialCartItems } from '../data/cartItems'; // Importar los datos iniciales del carrito
+import Button from '../components/UI/Button';
 
 const Cart: React.FC = () => {
+  // Crear el estado para los productos en el carrito
+  const [cartItems, setCartItems] = useState(initialCartItems);
+
+  // Crear un estado temporal para las cantidades
+  const [tempQuantities, setTempQuantities] = useState(
+    initialCartItems.map((item) => item.quantity)
+  );
+
+  // Función para actualizar la cantidad de un producto
+  const updateQuantity = (index: number, action: 'increase' | 'decrease') => {
+    const updatedQuantities = [...tempQuantities];
+    if (action === 'increase') {
+      updatedQuantities[index] += 1;
+    } else if (action === 'decrease' && updatedQuantities[index] > 1) {
+      updatedQuantities[index] -= 1;
+    }
+    setTempQuantities(updatedQuantities);
+  };
+
+  // Función para actualizar el carrito con las cantidades finales
+  const updateCart = () => {
+    const updatedCart = cartItems.map((item, index) => {
+      item.quantity = tempQuantities[index];
+      item.subtotal = item.price * item.quantity; // Recalcular el subtotal
+      return item;
+    });
+    setCartItems(updatedCart);
+  };
+
+  // Calcular el total de la compra
+  const calculateTotal = () => {
+    const subtotal = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
+    const shipping = 0; // Suponiendo que el envío es gratis
+    const discount = 24; // Simulando un descuento fijo
+    const tax = 61.99; // Simulando el impuesto fijo
+
+    return subtotal + shipping - discount + tax;
+  };
+
+  // Usamos el hook de navigate para redirigir
+  const navigate = useNavigate();
+
+  const goToStore = () => {
+    navigate('/tienda');
+  };
+
   return (
     <div className="cart-container">
       <div className="cart-products">
@@ -21,26 +69,23 @@ const Cart: React.FC = () => {
               <tr key={i}>
                 <td>
                   <div className="cart-item">
-                    <img
-                      src={item.image}
-                      alt="producto"
-                      width="60"
-                      height="60"
-                    />
+                    <img src={item.image} alt="producto" width="60" height="60" />
                     <div>{item.name}</div>
                   </div>
                 </td>
                 <td>
-                  {item.oldPrice && (
-                    <span className="cart-old-price">{item.oldPrice}</span>
-                  )}
+                  {item.oldPrice && <span className="cart-old-price">{item.oldPrice}</span>}
                   <span>{item.price}</span>
                 </td>
                 <td>
                   <div className="quantity-control">
-                    <button>−</button>
-                    <span>{item.quantity}</span>
-                    <button>+</button>
+                    <button onClick={() => updateQuantity(i, 'decrease')}>
+                      −
+                    </button>
+                    <span>{tempQuantities[i]}</span>
+                    <button onClick={() => updateQuantity(i, 'increase')}>
+                      +
+                    </button>
                   </div>
                 </td>
                 <td>{item.subtotal}</td>
@@ -49,8 +94,8 @@ const Cart: React.FC = () => {
           </tbody>
         </table>
         <div className="cart-actions">
-          <button>← VOLVER A LA TIENDA</button>
-          <button>ACTUALIZAR CARRITO</button>
+          <Button text="← VOLVER A LA TIENDA" onClick={goToStore} />
+          <Button text="ACTUALIZAR CARRITO" onClick={updateCart} />
         </div>
       </div>
 
@@ -59,7 +104,7 @@ const Cart: React.FC = () => {
           <h4>Total de la compra</h4>
           <div>
             <span>Sub-total</span>
-            <span>$320</span>
+            <span>${cartItems.reduce((acc, item) => acc + item.subtotal, 0)}</span>
           </div>
           <div>
             <span>Naviero</span>
@@ -71,12 +116,12 @@ const Cart: React.FC = () => {
           </div>
           <div>
             <span>Impuesto</span>
-            <span>61.99 $</span>
+            <span>$61.99</span>
           </div>
           <hr />
           <div className="total">
             <span>Total</span>
-            <span>$357.99 USD</span>
+            <span>${calculateTotal().toFixed(2)} USD</span>
           </div>
           <button>PROCEDER AL PAGO →</button>
         </div>
