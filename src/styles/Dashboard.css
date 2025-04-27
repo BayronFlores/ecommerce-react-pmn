@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+h2,p{
+  @apply text-black
+}
+
 .dashboard-container {
   @apply p-4 font-sans text-white flex;
 }

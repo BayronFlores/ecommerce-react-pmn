@@ -21,16 +21,16 @@ export const cartItems = [
     quantity: 1,
     subtotal: 80, // Subtotal inicial
   },
-  {
-    id: 3,
-    name: 'Auriculares Over-Ear con USB',
-    price: 2300, // Cambié a número
-    oldPrice: '$2500',
-    rating: 4,
-    reviews: 740,
-    image: 'https://i.imgur.com/qRzMuqF.png',
-    quantity: 1,
-    subtotal: 2300, // Subtotal inicial
-  },
+  // {
+  //   id: 3,
+  //   name: 'Auriculares Over-Ear con USB',
+  //   price: 2300, // Cambié a número
+  //   oldPrice: '$2500',
+  //   rating: 4,
+  //   reviews: 740,
+  //   image: 'https://i.imgur.com/qRzMuqF.png',
+  //   quantity: 1,
+  //   subtotal: 2300, // Subtotal inicial
+  // },
 
 ];

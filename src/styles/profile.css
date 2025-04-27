@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+h2{
+  @apply text-white
+}
+
 .profile-container {
   @apply p-8 flex justify-center;
 }

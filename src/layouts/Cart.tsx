@@ -39,7 +39,7 @@ const Cart: React.FC = () => {
     const subtotal = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
     const shipping = 0; // Suponiendo que el envío es gratis
     const discount = 24; // Simulando un descuento fijo
-    const tax = 61.99; // Simulando el impuesto fijo
+    const tax = 61; // Simulando el impuesto fijo
 
     return subtotal + shipping - discount + tax;
   };
@@ -116,7 +116,7 @@ const Cart: React.FC = () => {
           </div>
           <div>
             <span>Impuesto</span>
-            <span>$61.99</span>
+            <span>$61</span>
           </div>
           <hr />
           <div className="total">

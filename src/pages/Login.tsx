@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import mockUsers from '../data/userData';
+// import mockUsers from '../data/userData';
+import { UserService } from '../services/UserService';
 import useAuth from '../hooks/useAuth';
 
 const Login: React.FC = () => {
@@ -14,18 +15,16 @@ const Login: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Buscar usuario en el mock
-    const foundUser = mockUsers.find(
-      (user) => user.email === email && user.password === password,
-    );
+  const users = UserService.getAll(); // <<--- Trae todos los usuarios (mock + registrados)
+  const foundUser = users.find((user) => user.email === email && user.password === password);
 
-    if (foundUser) {
-      login(foundUser);
-      navigate('/cuenta');
-    } else {
-      setError('Correo o contraseña incorrectos');
-    }
-  };
+  if (foundUser) {
+    login(foundUser);
+    navigate('/cuenta');
+  } else {
+    setError('Correo o contraseña incorrectos');
+  }
+};
 
   return (
     <section className="login">

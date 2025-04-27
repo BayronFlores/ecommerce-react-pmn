@@ -9,15 +9,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container flex">
-      {/* Sidebar */}
       <AccountNav />
-
-      {/* Content Area */}
       <div className="content-area flex-1 p-6">
         <h2 className="dashboard-heading">Hola, {user.name}</h2>
         <p className="dashboard-paragraph">
-          Desde el panel de control de tu cuenta, puedes verificar y ver
-          fácilmente tus{' '}
+          Desde el panel de control de tu cuenta, puedes verificar y ver fácilmente tus{' '}
           <a href="#" className="dashboard-link">
             pedidos recientes
           </a>
@@ -37,7 +33,6 @@ const Dashboard = () => {
         </p>
 
         <div className="dashboard-grid">
-          {/* Información de la Cuenta */}
           <div className="dashboard-card">
             <h3 className="card-title">INFORMACIÓN DE LA CUENTA</h3>
             <div className="account-info">
@@ -57,16 +52,19 @@ const Dashboard = () => {
               <strong>Correo electrónico:</strong> {user.email}
             </div>
             <div>
-              <strong>Sec Correo electrónico:</strong>{' '}
-              {user.secondaryEmail || 'No disponible'}
+              <strong>Sec Correo electrónico:</strong> {user.secondaryEmail || 'No disponible'}
             </div>
             <div>
               <strong>Teléfono:</strong> {user.phoneNumber || 'No disponible'}
             </div>
-            <button className="dashboard-button">EDITAR CUENTA</button>
+            <button
+              className="dashboard-button"
+              onClick={() => (window.location.href = '/Cuenta/Perfil')}
+            >
+              EDITAR CUENTA
+            </button>
           </div>
 
-          {/* Dirección de Facturación */}
           <div className="dashboard-card">
             <h3 className="card-title">DIRECCIÓN DE FACTURACIÓN</h3>
             <div>
@@ -79,35 +77,14 @@ const Dashboard = () => {
               <strong>Teléfono:</strong> {user.phoneNumber || 'No disponible'}
             </div>
             <div>
-              <strong>Correo electrónico:</strong>{' '}
-              {user.secondaryEmail || user.email}
+              <strong>Correo electrónico:</strong> {user.secondaryEmail || user.email}
             </div>
-            <button className="dashboard-button">EDITAR DIRECCIÓN</button>
-          </div>
-
-          {/* Métricas de pedidos */}
-          <div className="dashboard-metrics">
-            <div className="info-box blue">
-              <div className="icon">🚀</div>
-              <div>
-                <div className="info-number">154</div>
-                <div>Pedidos totales</div>
-              </div>
-            </div>
-            <div className="info-box orange">
-              <div className="icon">📄</div>
-              <div>
-                <div className="info-number">5</div>
-                <div>Órdenes pendientes</div>
-              </div>
-            </div>
-            <div className="info-box green">
-              <div className="icon">📦</div>
-              <div>
-                <div className="info-number">149</div>
-                <div>Pedidos completados</div>
-              </div>
-            </div>
+            <button
+              className="dashboard-button"
+              onClick={() => (window.location.href = '/Cuenta/Perfil')}
+            >
+              EDITAR DIRECCIÓN
+            </button>
           </div>
         </div>
       </div>

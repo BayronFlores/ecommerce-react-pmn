@@ -1,18 +1,52 @@
+import React, { useState, useEffect } from 'react';
 import '../../styles/Profile.css';
 import AccountNav from '../../components/Layout/AccountNav';
 import useAuth from '../../hooks/useAuth';
+import { UserService } from '../../services/UserService';
+import { UserData } from '../../data/userData';
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth(); // Ahora puedes acceder a setUser
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedUser, setEditedUser] = useState<UserData | null>(user);
+
+  useEffect(() => {
+    // Cuando el usuario cambia, actualizamos el estado de editedUser
+    setEditedUser(user);
+  }, [user]);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+const handleSaveClick = () => {
+  if (editedUser && editedUser.id) {
+    UserService.update(editedUser); // Actualizar en el UserService
+
+    // Guardar los datos actualizados en localStorage
+    localStorage.setItem('user', JSON.stringify(editedUser));
+
+    // Actualizar el estado global
+    setUser(editedUser);
+
+    setIsEditing(false); // Salir del modo de edición
+  } else {
+    console.error('Usuario no definido o incompleto');
+  }
+};
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (editedUser) {
+      setEditedUser({ ...editedUser, [name]: value });
+    }
+  };
 
   if (!user) return <p>Cargando datos del usuario...</p>;
 
   return (
     <div className="container flex">
-      {/* Sidebar */}
       <AccountNav />
-
-      {/* Content Area */}
       <div className="profile-container flex-1 p-6">
         <div className="profile-card">
           <h2 className="profile-title">Account Setting</h2>
@@ -30,93 +64,115 @@ const Profile = () => {
                 <label>Display name</label>
                 <input
                   type="text"
-                  value={user.displayName || ''}
-                  placeholder="Display Name"
+                  value={editedUser?.displayName || ''}
+                  name="displayName"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Username</label>
                 <input
                   type="text"
-                  value={user.username || ''}
-                  placeholder="Username"
+                  value={editedUser?.username || ''}
+                  name="username"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Full Name</label>
                 <input
                   type="text"
-                  value={user.name}
+                  value={editedUser?.name || ''}
+                  name="name"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Email</label>
                 <input
                   type="email"
-                  value={user.email}
+                  value={editedUser?.email || ''}
+                  name="email"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Secondary Email</label>
                 <input
                   type="text"
-                  value={user.secondaryEmail || ''}
+                  value={editedUser?.secondaryEmail || ''}
+                  name="secondaryEmail"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Phone Number</label>
                 <input
                   type="text"
-                  value={user.phoneNumber || ''}
+                  value={editedUser?.phoneNumber || ''}
+                  name="phoneNumber"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Country/Region</label>
                 <input
                   type="text"
-                  value={user.country || ''}
+                  value={editedUser?.country || ''}
+                  name="country"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>State</label>
                 <input
                   type="text"
-                  value={user.state || ''}
+                  value={editedUser?.state || ''}
+                  name="state"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
                 <label>Zip Code</label>
                 <input
                   type="text"
-                  value={user.zipCode || ''}
+                  value={editedUser?.zipCode || ''}
+                  name="zipCode"
                   className="profile-input"
-                  readOnly
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 />
               </div>
             </form>
           </div>
 
-          <div>
-            <button className="profile-save-button" disabled>
-              Guardar Cambios
+          {isEditing ? (
+            <div>
+              <button className="profile-save-button" onClick={handleSaveClick}>
+                Guardar Cambios
+              </button>
+            </div>
+          ) : (
+            <button className="profile-save-button" onClick={handleEditClick}>
+              Editar Perfil
             </button>
-          </div>
+          )}
         </div>
       </div>
     </div>

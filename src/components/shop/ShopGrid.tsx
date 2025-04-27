@@ -1,3 +1,6 @@
+import Button from '../UI/Button';
+import { useNavigate } from 'react-router-dom';
+
 interface Producto {
   id: number;
   name: string;
@@ -13,11 +16,11 @@ interface ShopGridProps {
   productos: Producto[];
 }
 
-import Button from '../UI/Button';
-
 const ShopGrid = ({ productos }: ShopGridProps) => {
+  const navigate = useNavigate();
+
   const handleButtonClick = (producto: Producto) => {
-    console.log(`Ver más del producto: ${producto.name}`);
+    navigate(`/Tienda/${producto.id}`);
   };
 
   return (

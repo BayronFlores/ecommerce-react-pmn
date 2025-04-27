@@ -1,22 +1,26 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { productos } from '../../data/productos';
 
 const ProductDetail = () => {
+  const { id } = useParams<{ id: string }>();
+  const producto = productos.find((p) => p.id === Number(id));
+
+  if (!producto) {
+    return <div className="text-center text-red-500">Producto no encontrado</div>;
+  }
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Sección de imagen */}
       <div className="flex flex-col items-center">
-        <img
-          src="https://via.placeholder.com/500x300" // Cambia esta URL por la imagen real
-          alt="Producto"
-          className="w-full object-cover rounded-lg"
-        />
+        <img src={producto.image} alt={producto.name} className="w-full object-cover rounded-lg" />
 
         {/* Carrusel de miniaturas */}
         <div className="flex mt-4 gap-2">
           {[1, 2, 3, 4, 5].map((item) => (
             <div key={item} className="w-20 h-20 border rounded-md overflow-hidden cursor-pointer">
               <img
-                src="https://via.placeholder.com/80"
+                src={producto.image} // Aquí usamos la misma imagen del producto
                 alt={`Miniatura ${item}`}
                 className="w-full h-full object-cover"
               />
@@ -29,17 +33,17 @@ const ProductDetail = () => {
       <div className="flex flex-col gap-4">
         {/* Título y calificación */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">
-            Apple MacBook Pro 2020 con chip Apple M1
-          </h2>
-          <p className="text-sm text-gray-500">(21,671 Comentarios de usuarios)</p>
+          <h2 className="text-2xl font-bold text-gray-800">{producto.name}</h2>
+          <p className="text-sm text-gray-500">({producto.reviews} Comentarios de usuarios)</p>
         </div>
 
         {/* Precio */}
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-blue-600">$1699</span>
-          <span className="text-sm line-through text-gray-400">$1999</span>
-          <span className="text-sm text-green-600 font-semibold">21% DE DESCUENTO</span>
+          <span className="text-2xl font-bold text-blue-600">{producto.price}</span>
+          <span className="text-sm line-through text-gray-400">{producto.priceDiscount}</span>
+          <span className="text-sm text-green-600 font-semibold">
+            {producto.porDiscount}% DE DESCUENTO
+          </span>
         </div>
 
         {/* Opciones de compra */}
@@ -53,21 +57,14 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* Memoria */}
           <div>
-            <label className="font-semibold text-gray-700">Memoria:</label>
-            <select className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-              <option>Memoria unificada de 16 GB</option>
-              {/* Puedes agregar más opciones */}
-            </select>
-          </div>
-
-          {/* Almacenamiento */}
-          <div>
-            <label className="font-semibold text-gray-700">Almacenamiento:</label>
-            <select className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-              <option>Almacenamiento SSD de 1TB</option>
-            </select>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Descripción del producto</h3>
+            <p className="text-gray-600 leading-relaxed">
+              {producto.name} es una excelente opción en la categoría de {producto.category}.
+              Diseñado para ofrecerte la mejor experiencia de uso, combina calidad, innovación y un
+              precio competitivo. Ideal para quienes buscan rendimiento y durabilidad en un solo
+              producto.
+            </p>
           </div>
         </div>
 
@@ -82,19 +79,12 @@ const ProductDetail = () => {
           {/* Botones */}
           <div className="flex gap-2">
             <button className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md shadow">
-              Añadir a la tarjeta
+              Comprar Ahora
             </button>
             <button className="px-6 py-2 border border-orange-500 text-orange-500 hover:bg-orange-50 rounded-md">
-              Cómpralo ahora
+              Agregarlo al carrito
             </button>
           </div>
-        </div>
-
-        {/* Extras */}
-        <div className="flex items-center gap-4 mt-4 text-gray-500 text-sm">
-          <button>Añadir a la lista de deseos</button>
-          <button>Agregar para comparar</button>
-          <button>Compartir producto</button>
         </div>
 
         {/* Métodos de pago */}
@@ -107,6 +97,17 @@ const ProductDetail = () => {
             <div className="w-10 h-6 bg-gray-300 rounded-md"></div>
           </div>
         </div>
+      </div>
+      {/* Características del producto */}
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">Características del producto</h3>
+        <ul className="list-disc list-inside text-gray-600 space-y-1">
+          <li>Alta calidad y durabilidad.</li>
+          <li>Diseño moderno y funcional.</li>
+          <li>Excelente relación calidad-precio.</li>
+          <li>Garantía de satisfacción del cliente.</li>
+          <li>Ideal para uso diario o profesional.</li>
+        </ul>
       </div>
     </div>
   );

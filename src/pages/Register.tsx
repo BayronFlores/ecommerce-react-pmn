@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/Login.css'; 
 
+import { UserService } from '../services/UserService'; // importa tu servicio
+import { UserData } from '../data/userData';
+
 const Register: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,9 +22,25 @@ const Register: React.FC = () => {
       return;
     }
 
-    console.log('Nombre:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const newUser: UserData = {
+      id: '', // el id se asigna en UserService
+      name,
+      email,
+      password,
+    };
+
+    const result = UserService.register(newUser);
+
+    alert(result.message);
+
+    if (result.success) {
+      // Limpiar el formulario
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setTermsAccepted(false);
+    }
   };
 
   return (

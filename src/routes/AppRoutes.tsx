@@ -7,12 +7,14 @@ import Shop from '../pages/Shop';
 import PrivateRoute from '../components/routes/PrivateRoute';
 import PublicOnlyRoute from '../components/routes/PublicOnlyRoute';
 import AdminRoutes from './AdminRoutes';
+import ProductDetail from '../components/shop/ProductDetail';
 
 const AppRoutes = (
   <>
     {AdminRoutes}
     <Route index element={<Home />} />
     <Route path="Tienda" element={<Shop />} />
+    <Route path="Tienda/:id" element={<ProductDetail />} />
 
     {/* Rutas públicas SOLO si NO estás logueado */}
     <Route element={<PublicOnlyRoute />}>
