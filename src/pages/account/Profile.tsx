@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/Profile.css';
+import '../../styles/profile.css';
 import AccountNav from '../../components/Layout/AccountNav';
 import useAuth from '../../hooks/useAuth';
 import { UserService } from '../../services/UserService';
