@@ -16,9 +16,10 @@ interface Producto {
 
 interface ShopGridProps {
   productos: Producto[];
+  className?: string; 
 }
 
-const ShopGrid = ({ productos }: ShopGridProps) => {
+const ShopGrid = ({ productos, className }: ShopGridProps) => {
   const navigate = useNavigate();
 
   const handleButtonClick = (producto: Producto) => {
@@ -26,7 +27,13 @@ const ShopGrid = ({ productos }: ShopGridProps) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-6 justify-center">
+    <div
+      className={
+        className
+          ? className
+          : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center'
+      }
+    >
       {productos.map((producto) => (
         <div
           key={producto.id}

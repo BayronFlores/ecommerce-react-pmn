@@ -94,6 +94,6 @@
 
 /* Productos Destacados */
 .productShowcase {
-  @apply flex flex-wrap gap-6 mt-16 justify-center;
+  @apply flex flex-wrap gap-6 mt-16  justify-center;
 }
 

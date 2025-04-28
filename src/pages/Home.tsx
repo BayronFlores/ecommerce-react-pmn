@@ -86,7 +86,7 @@ const Home: React.FC = () => {
 
       {/* Sección de Productos Destacados */}
       <div className={styles.productShowcase}>
-        <ShopGrid productos={productosDestacados} />{' '}
+        <ShopGrid productos={productosDestacados} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-items-center"/>{' '}
         {/* Aquí pasamos los productos más populares */}
       </div>
     </div>

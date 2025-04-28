@@ -46,7 +46,7 @@ const Shop = () => {
           setPriceRange={setPriceRange}
         />
         <div className="w-full lg:w-3/4 p-4">
-          <ShopGrid productos={filterProducts()} />
+          <ShopGrid productos={filterProducts()} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center"/>
           <Pagination />
         </div>
       </div>
