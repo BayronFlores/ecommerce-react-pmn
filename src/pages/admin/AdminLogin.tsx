@@ -28,27 +28,46 @@ const AdminLogin = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '50px auto' }}>
-      <h2>Login Administrador</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Ingresar</button>
-      </form>
-    </div>
+    <section className="login">
+      <div className="login-box">
+        <form onSubmit={handleSubmit}>
+          <h2 className="h2">Login</h2>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <div className="input-box">
+            <span className="icon">
+              <i className="bx bx-envelope"></i>
+            </span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <label>Email</label>
+          </div>
+          <div className="input-box">
+            <span className="icon">
+              <i className="bx bx-lock-alt"></i>
+            </span>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <label>Password</label>
+          </div>
+          <div className="remember-forgot">
+
+          </div>
+          <button className="button" type="submit">
+            Login
+          </button>
+          <div className="register-link">
+          </div>
+        </form>
+      </div>
+    </section>
   );
 };
 

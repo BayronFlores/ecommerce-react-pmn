@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+main{
+  @apply dark:bg-gray-700;
+}
+
 .login {
   @apply flex items-center justify-center h-[80vh] p-5;
 }

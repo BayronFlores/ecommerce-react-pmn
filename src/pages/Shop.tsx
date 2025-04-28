@@ -31,7 +31,7 @@ const Shop = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-white p-4">
       <TopBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}

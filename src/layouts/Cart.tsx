@@ -1,51 +1,55 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Usamos useNavigate en lugar de useHistory
-import '../styles/cart.css';
-import { cartItems as initialCartItems } from '../data/cartItems'; // Importar los datos iniciales del carrito
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 import Button from '../components/UI/Button';
+import '../styles/cart.css';
 
 const Cart: React.FC = () => {
-  // Crear el estado para los productos en el carrito
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const cartContext = useContext(CartContext);
+  const navigate = useNavigate();
 
-  // Crear un estado temporal para las cantidades
-  const [tempQuantities, setTempQuantities] = useState(
-    initialCartItems.map((item) => item.quantity)
-  );
+  if (!cartContext) {
+    return <div className="text-center text-red-500">CartContext no disponible</div>;
+  }
 
-  // Función para actualizar la cantidad de un producto
+  const { cartItems, removeFromCart, updateItemQuantity } = cartContext;
+  const [tempQuantities, setTempQuantities] = useState<number[]>([]);
+
+  useEffect(() => {
+    setTempQuantities(cartItems.map((item) => item.quantity));
+  }, [cartItems]);
+
   const updateQuantity = (index: number, action: 'increase' | 'decrease') => {
     const updatedQuantities = [...tempQuantities];
     if (action === 'increase') {
-      updatedQuantities[index] += 1;
+      updatedQuantities[index]++;
     } else if (action === 'decrease' && updatedQuantities[index] > 1) {
-      updatedQuantities[index] -= 1;
+      updatedQuantities[index]--;
     }
     setTempQuantities(updatedQuantities);
   };
 
-  // Función para actualizar el carrito con las cantidades finales
-  const updateCart = () => {
-    const updatedCart = cartItems.map((item, index) => {
-      item.quantity = tempQuantities[index];
-      item.subtotal = item.price * item.quantity; // Recalcular el subtotal
-      return item;
-    });
-    setCartItems(updatedCart);
+  const handleRemoveItem = (id: number) => {
+    removeFromCart(id);
   };
 
-  // Calcular el total de la compra
+  const handleUpdateCart = () => {
+    cartItems.forEach((item, index) => {
+      updateItemQuantity(item.id, tempQuantities[index]);
+    });
+  };
+
   const calculateTotal = () => {
-    const subtotal = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
-    const shipping = 0; // Suponiendo que el envío es gratis
-    const discount = 24; // Simulando un descuento fijo
-    const tax = 61; // Simulando el impuesto fijo
+    const subtotal = cartItems.reduce(
+      (acc, item, index) => acc + item.price * tempQuantities[index],
+      0
+    );
+    const shipping = 0;
+    const discount = 24;
+    const tax = 61;
 
     return subtotal + shipping - discount + tax;
   };
-
-  // Usamos el hook de navigate para redirigir
-  const navigate = useNavigate();
 
   const goToStore = () => {
     navigate('/tienda');
@@ -55,48 +59,59 @@ const Cart: React.FC = () => {
     <div className="cart-container">
       <div className="cart-products">
         <h3>Carrito de compras</h3>
-        <table className="cart-table">
-          <thead>
-            <tr>
-              <th>PRODUCTOS</th>
-              <th>PRECIO</th>
-              <th>CANTIDAD</th>
-              <th>SUB-TOTAL</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((item, i) => (
-              <tr key={i}>
-                <td>
-                  <div className="cart-item">
-                    <img src={item.image} alt="producto" width="60" height="60" />
-                    <div>{item.name}</div>
-                  </div>
-                </td>
-                <td>
-                  {item.oldPrice && <span className="cart-old-price">{item.oldPrice}</span>}
-                  <span>{item.price}</span>
-                </td>
-                <td>
-                  <div className="quantity-control">
-                    <button onClick={() => updateQuantity(i, 'decrease')}>
-                      −
-                    </button>
-                    <span>{tempQuantities[i]}</span>
-                    <button onClick={() => updateQuantity(i, 'increase')}>
-                      +
-                    </button>
-                  </div>
-                </td>
-                <td>{item.subtotal}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="cart-actions">
-          <Button text="← VOLVER A LA TIENDA" onClick={goToStore} />
-          <Button text="ACTUALIZAR CARRITO" onClick={updateCart} />
-        </div>
+        {cartItems.length === 0 ? (
+          <p className="text-center text-gray-500">Tu carrito está vacío</p>
+        ) : (
+          <>
+            <table className="cart-table">
+              <thead>
+                <tr>
+                  <th>PRODUCTOS</th>
+                  <th>PRECIO</th>
+                  <th>CANTIDAD</th>
+                  <th>SUB-TOTAL</th>
+                  <th>ACCIONES</th> {/* NUEVA COLUMNA */}
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item, i) => (
+                  <tr key={item.id}>
+                    <td>
+                      <div className="cart-item">
+                        <img src={item.image} alt={item.name} width="60" height="60" />
+                        <div>{item.name}</div>
+                      </div>
+                    </td>
+                    <td>
+                      ${item.price}
+                      {item.priceDiscount && (
+                        <span className="text-red-500 ml-2">(${item.priceDiscount})</span>
+                      )}
+                    </td>
+                    <td>
+                      <div className="quantity-control">
+                        <button onClick={() => updateQuantity(i, 'decrease')}>−</button>
+                        <span>{tempQuantities[i]}</span>
+                        <button onClick={() => updateQuantity(i, 'increase')}>+</button>
+                      </div>
+                    </td>
+                    <td>${(item.price * tempQuantities[i]).toFixed(2)}</td>
+                    <td>
+                      <button onClick={() => handleRemoveItem(item.id)} className="remove-button">
+                        ❌
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div className="cart-actions">
+              <Button text="← VOLVER A LA TIENDA" onClick={goToStore} />
+              <Button text="ACTUALIZAR CARRITO" onClick={handleUpdateCart} />
+            </div>
+          </>
+        )}
       </div>
 
       <div className="cart-summary">
@@ -104,7 +119,9 @@ const Cart: React.FC = () => {
           <h4>Total de la compra</h4>
           <div>
             <span>Sub-total</span>
-            <span>${cartItems.reduce((acc, item) => acc + item.subtotal, 0)}</span>
+            <span>
+              ${cartItems.reduce((acc, item, index) => acc + item.price * tempQuantities[index], 0)}
+            </span>
           </div>
           <div>
             <span>Naviero</span>

@@ -49,7 +49,7 @@ const handleSaveClick = () => {
       <AccountNav />
       <div className="profile-container flex-1 p-6">
         <div className="profile-card">
-          <h2 className="profile-title">Account Setting</h2>
+          <h2 className="profile-title">Ajustes de Cuenta</h2>
           <div className="profile-content">
             <div className="profile-image-wrapper">
               <img
@@ -72,7 +72,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Username</label>
+                <label>Nombre de Usuario</label>
                 <input
                   type="text"
                   value={editedUser?.username || ''}
@@ -83,7 +83,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Full Name</label>
+                <label>Nombre Completo</label>
                 <input
                   type="text"
                   value={editedUser?.name || ''}
@@ -105,7 +105,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Secondary Email</label>
+                <label>Email Secundario</label>
                 <input
                   type="text"
                   value={editedUser?.secondaryEmail || ''}
@@ -116,7 +116,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Phone Number</label>
+                <label>Numero Telefonico</label>
                 <input
                   type="text"
                   value={editedUser?.phoneNumber || ''}
@@ -127,7 +127,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Country/Region</label>
+                <label>Pais/Region</label>
                 <input
                   type="text"
                   value={editedUser?.country || ''}
@@ -138,7 +138,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>State</label>
+                <label>estado</label>
                 <input
                   type="text"
                   value={editedUser?.state || ''}
@@ -149,7 +149,7 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Zip Code</label>
+                <label>Código postal</label>
                 <input
                   type="text"
                   value={editedUser?.zipCode || ''}

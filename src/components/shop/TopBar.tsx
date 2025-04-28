@@ -7,7 +7,7 @@ interface TopBarProps {
 
 const TopBar = ({ searchTerm, setSearchTerm, sortOption, setSortOption }: TopBarProps) => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-center mb-6 p-4 bg-white rounded shadow">
+    <div className="flex flex-col lg:flex-row justify-between items-center mb-6 p-4 bg-white dark:bg-gray-800 rounded shadow">
       <div className="flex items-center space-x-2">
         <input
           type="text"
@@ -23,7 +23,7 @@ const TopBar = ({ searchTerm, setSearchTerm, sortOption, setSortOption }: TopBar
         <div>
           Ordenar por:
           <select
-            className="ml-2 p-2 border rounded"
+            className="ml-2 p-2 border rounded dark:bg-gray-700"
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
           >

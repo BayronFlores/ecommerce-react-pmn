@@ -1,7 +1,11 @@
 @import 'tailwindcss';
 
+main{
+  @apply dark:bg-gray-700;
+}
+
 .order-container {
-  @apply p-4 font-sans flex;
+  @apply p-0 font-sans flex;
 }
 
 .order-table-container {

@@ -8,7 +8,7 @@ const Dashboard = () => {
   if (!user) return <p>Cargando datos del usuario...</p>;
 
   return (
-    <div className="dashboard-container flex">
+    <div className="dashboard-container">
       <AccountNav />
       <div className="content-area flex-1 p-6">
         <h2 className="dashboard-heading">Hola, {user.name}</h2>

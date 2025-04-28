@@ -3,11 +3,17 @@ import styles from '../styles/Home.module.css';
 import { benefits } from '../data/HomeData';
 import { productos } from '../data/productos';
 import Button from '../components/UI/Button';
+import ShopGrid from '../components/shop/ShopGrid';
 
 const Home: React.FC = () => {
   const handleButtonClick = () => {
     alert('¡Comprando ahora!');
   };
+
+  // Ordena los productos por la cantidad de reseñas de mayor a menor y toma los primeros 8
+  const productosDestacados = productos
+    .sort((a, b) => b.reviews - a.reviews) // Ordena de mayor a menor por número de reviews
+    .slice(0, 8); // Toma solo los primeros 8 productos
 
   return (
     <div className={styles.homeContainer}>
@@ -80,22 +86,8 @@ const Home: React.FC = () => {
 
       {/* Sección de Productos Destacados */}
       <div className={styles.productShowcase}>
-        {productos
-          .sort((a, b) => b.reviews - a.reviews) // Ordena de mayor a menor por número de reviews
-          .slice(0, 8) // Toma solo los primeros 8 productos
-          .map((p, i) => (
-            <div
-              key={p.id}
-              className={`${styles.productCard} 
-                    ${p.status === 'Sold Out' && <div className={styles.statusBadge}>Agotado</div>}
-                    ${i === 0 ? styles.featuredProduct : ''}`}
-            >
-              {/* Opcionalmente puedes mostrar descuento o estado si tuvieras esos datos en 'productos' */}
-              <img src={p.image} alt={p.name} className={styles.productImage} />
-              <div className={styles.productTitle}>{p.name}</div>
-              <div className={styles.productPrice}>{p.price}</div>
-            </div>
-          ))}
+        <ShopGrid productos={productosDestacados} />{' '}
+        {/* Aquí pasamos los productos más populares */}
       </div>
     </div>
   );

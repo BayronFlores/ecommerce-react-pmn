@@ -5,6 +5,8 @@ interface Producto {
   id: number;
   name: string;
   price: string;
+  priceDiscount: string | null;
+  porDiscount: number;
   rating: number;
   reviews: number;
   image: string;
@@ -28,7 +30,7 @@ const ShopGrid = ({ productos }: ShopGridProps) => {
       {productos.map((producto) => (
         <div
           key={producto.id}
-          className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
+          className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl dark:bg-gray-800 dark:border-gray-700"
         >
           <a href="#">
             <img
@@ -54,10 +56,23 @@ const ShopGrid = ({ productos }: ShopGridProps) => {
                 {producto.reviews} reseñas
               </span>
             </div>
+
             <div className="flex items-center justify-between">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                {producto.price}
-              </span>
+              <div className="flex items-center gap-2">
+                {producto.priceDiscount ? (
+                  <>
+                    <span className="text-2xl font-bold text-blue-600">
+                      {producto.priceDiscount}
+                    </span>
+                    <span className="text-sm line-through text-gray-400">{producto.price}</span>
+                    <span className="text-sm text-green-600 font-semibold">
+                      {producto.porDiscount}%
+                    </span>
+                  </>
+                ) : (
+                  <span className="text-2xl font-bold text-blue-600">{producto.price}</span>
+                )}
+              </div>
               <Button text="Ver más" onClick={() => handleButtonClick(producto)} />
             </div>
           </div>
