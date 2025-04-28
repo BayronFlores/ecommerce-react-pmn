@@ -1,5 +1,3 @@
-import React from "react";
-
 const Pagination = () => {
   return (
     <div className="flex justify-center items-center mt-8 space-x-2">

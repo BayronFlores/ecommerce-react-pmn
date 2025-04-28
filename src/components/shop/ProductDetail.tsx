@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { productos } from '../../data/productos';
 import { CartContext } from '../../context/CartContext'; // Asegúrate de importar tu contexto
@@ -18,17 +18,18 @@ const ProductDetail = () => {
 
   const { addToCart } = cartContext;
 
-  const handleAddToCart = () => {
-    addToCart({
-      id: producto.id,
-      name: producto.name,
-      price: Number(producto.price.replace('$', '')), // El precio estaba como string "$36"
-      quantity: 1,
-      image: producto.image,
-      subtotal: Number(producto.price.replace('$', '')),
-    });
-    alert('Producto agregado al carrito!');
-  };
+const handleAddToCart = () => {
+  addToCart({
+    id: producto.id,
+    name: producto.name,
+    price: Number(producto.price.replace('$', '')), // El precio estaba como string "$36"
+    quantity: 1,
+    image: producto.image,
+    subtotal: Number(producto.price.replace('$', '')),
+    priceDiscount: producto.priceDiscount ?? null, // Asignar null si no hay descuento
+  });
+  alert('Producto agregado al carrito!');
+};
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
