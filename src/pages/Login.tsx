@@ -67,7 +67,7 @@ const Login: React.FC = () => {
           </button>
           <div className="register-link">
             <p>
-              No tienes una cuenta? <a href="/register">Registrarme</a>
+              No tienes una cuenta? <a href="/registrarse">Registrarme</a>
             </p>
             <Link to="/cuenta" style={{ marginLeft: '1rem' }}>
               cuenta

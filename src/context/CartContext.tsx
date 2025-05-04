@@ -6,6 +6,7 @@ interface CartItem {
   name: string;
   price: number;
   priceDiscount: string | null;
+  porDiscount: number;
   quantity: number;
   image: string;
   subtotal: number;
@@ -15,20 +16,24 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: number) => void;
-  updateItemQuantity: (id: number, quantity: number) => void; // ✅ AÑADIDO
+  updateItemQuantity: (id: number, quantity: number) => void;
+  clearCart: () => void; // Añadido para vaciar el carrito
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const userId = localStorage.getItem('userId'); // 🔁 AJUSTA según dónde guardas el ID del usuario
+  const storageKey = userId ? `cart_${userId}` : 'cart_guest'; // soporte para invitados
+
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    const savedCart = localStorage.getItem('cart');
+    const savedCart = localStorage.getItem(storageKey);
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }, [cartItems]);
+    localStorage.setItem(storageKey, JSON.stringify(cartItems));
+  }, [cartItems, storageKey]);
 
   const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
@@ -55,8 +60,15 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     );
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem(storageKey); // Limpiar el almacenamiento local
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateItemQuantity }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, updateItemQuantity, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );

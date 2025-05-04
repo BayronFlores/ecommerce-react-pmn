@@ -39,20 +39,30 @@ const Cart: React.FC = () => {
     });
   };
 
+  const getProductPrice = (item: any) => {
+    const price = item.priceDiscount || item.price; // Usar priceDiscount si está disponible, de lo contrario price
+    const priceString = price.toString(); // Convertir a string para evitar errores con el método replace
+    return parseFloat(priceString.replace('$', '')); // Eliminar el signo $ y convertir a número
+  };
+
   const calculateTotal = () => {
     const subtotal = cartItems.reduce(
-      (acc, item, index) => acc + item.price * tempQuantities[index],
+      (acc, item, index) => acc + getProductPrice(item) * tempQuantities[index],
       0
     );
     const shipping = 0;
-    const discount = 24;
-    const tax = 61;
+    // const discount = 24;
 
-    return subtotal + shipping - discount + tax;
+    return subtotal + shipping;
   };
 
   const goToStore = () => {
     navigate('/tienda');
+  };
+
+  const handlecheckout = () => {
+    console.log('Procesando el pago...');
+    navigate('/checkout');
   };
 
   return (
@@ -83,10 +93,8 @@ const Cart: React.FC = () => {
                       </div>
                     </td>
                     <td>
-                      ${item.price}
-                      {item.priceDiscount && (
-                        <span className="text-red-500 ml-2">(${item.priceDiscount})</span>
-                      )}
+                      ${getProductPrice(item).toFixed(0)}
+                      
                     </td>
                     <td>
                       <div className="quantity-control">
@@ -95,7 +103,7 @@ const Cart: React.FC = () => {
                         <button onClick={() => updateQuantity(i, 'increase')}>+</button>
                       </div>
                     </td>
-                    <td>${(item.price * tempQuantities[i]).toFixed(2)}</td>
+                    <td>${(getProductPrice(item) * tempQuantities[i]).toFixed(0)}</td>
                     <td>
                       <button onClick={() => handleRemoveItem(item.id)} className="remove-button">
                         ❌
@@ -120,27 +128,33 @@ const Cart: React.FC = () => {
           <div>
             <span>Sub-total</span>
             <span>
-              ${cartItems.reduce((acc, item, index) => acc + item.price * tempQuantities[index], 0)}
+              $
+              {cartItems
+                .reduce(
+                  (acc, item, index) => acc + getProductPrice(item) * tempQuantities[index],
+                  0
+                )
+                .toFixed(0)}
             </span>
           </div>
           <div>
-            <span>Naviero</span>
+            <span>Envio</span>
             <span>Gratis</span>
           </div>
-          <div>
+          {/* <div>
             <span>Descuento</span>
             <span>$24</span>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <span>Impuesto</span>
             <span>$61</span>
-          </div>
+          </div> */}
           <hr />
           <div className="total">
             <span>Total</span>
-            <span>${calculateTotal().toFixed(2)} USD</span>
+            <span>${calculateTotal().toFixed(0)} USD</span>
           </div>
-          <button>PROCEDER AL PAGO →</button>
+          <button  onClick={handlecheckout}>PROCEDER AL PAGO →</button>
         </div>
 
         <div className="cart-coupon">

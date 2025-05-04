@@ -45,7 +45,7 @@ const Register: React.FC = () => {
 
   return (
     <section className="login">
-      <div className="login-box">
+      <div className="login-box ">
         <form onSubmit={handleSubmit}>
           <h2 className="h2">Registro</h2>
 

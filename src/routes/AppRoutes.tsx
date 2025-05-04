@@ -7,7 +7,9 @@ import Shop from '../pages/Shop';
 import PrivateRoute from '../components/routes/PrivateRoute';
 import PublicOnlyRoute from '../components/routes/PublicOnlyRoute';
 import AdminRoutes from './AdminRoutes';
+import CheckoutPage from '../pages/CheckoutPage';
 import ProductDetail from '../components/shop/ProductDetail';
+import PaymentPage from '../layouts/PaymentPage';
 
 const AppRoutes = (
   <>
@@ -25,6 +27,8 @@ const AppRoutes = (
     {/* Rutas protegidas SOLO si estás logueado */}
     <Route element={<PrivateRoute />}>
       <Route path="Carrito" element={<Cart />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="Confirmacion" element={<PaymentPage />} />
     </Route>
   </>
 );

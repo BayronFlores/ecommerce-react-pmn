@@ -61,22 +61,11 @@ const handleSaveClick = () => {
 
             <form className="profile-form">
               <div>
-                <label>Display name</label>
+                <label>ciudad</label>
                 <input
                   type="text"
-                  value={editedUser?.displayName || ''}
-                  name="displayName"
-                  className="profile-input"
-                  onChange={handleChange}
-                  readOnly={!isEditing}
-                />
-              </div>
-              <div>
-                <label>Nombre de Usuario</label>
-                <input
-                  type="text"
-                  value={editedUser?.username || ''}
-                  name="username"
+                  value={editedUser?.city || ''}
+                  name="city"
                   className="profile-input"
                   onChange={handleChange}
                   readOnly={!isEditing}
@@ -105,11 +94,11 @@ const handleSaveClick = () => {
                 />
               </div>
               <div>
-                <label>Email Secundario</label>
+                <label>Direccion</label>
                 <input
                   type="text"
-                  value={editedUser?.secondaryEmail || ''}
-                  name="secondaryEmail"
+                  value={editedUser?.address || ''}
+                  name="address"
                   className="profile-input"
                   onChange={handleChange}
                   readOnly={!isEditing}

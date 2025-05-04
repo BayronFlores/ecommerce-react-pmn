@@ -7,9 +7,8 @@ export interface UserData {
   role?: 'admin' | 'user';
   token?: string;
   profileImage?: string;
-  displayName?: string;
-  username?: string;
-  secondaryEmail?: string;
+  city?: string;
+  address?: string;
   phoneNumber?: string;
   country?: string;
   state?: string;
@@ -25,9 +24,8 @@ const mockUsers: UserData[] = [
     role: 'user',
     token: 'mock-token-juan',
     profileImage: '/img/juan.png',
-    displayName: 'JPerez',
-    username: 'juanp',
-    secondaryEmail: 'juan.sec@example.com',
+    city: 'JPerez',
+    address: 'juan.sec@example.com',
     phoneNumber: '+56912345678',
     country: 'Chile',
     state: 'Araucanía',
