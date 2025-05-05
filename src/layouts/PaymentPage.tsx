@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useLocation} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext'; // Asegúrate de importar el CartContext
-
+import Button from '../components/UI/Button';
 interface CartItem {
   id: string;
   name: string;
@@ -29,6 +29,11 @@ const ConfirmacionPage: React.FC = () => {
   const { state } = location;
   const { totalAmount, shippingData, cartItems } = state as LocationState;
   const [orderId, setOrderId] = useState<string | null>(null);
+
+    const navigate = useNavigate();
+    const handleButtonClick = () => {
+      navigate('/Cuenta/Ordenes');
+    };
 
   // Accede al contexto del carrito
   const cartContext = useContext(CartContext);
@@ -60,7 +65,7 @@ const ConfirmacionPage: React.FC = () => {
       id: newOrderId,
       status: 'Completado',
       statusColor: 'green',
-      date: new Date().toLocaleDateString(),
+      date: new Date().toLocaleString(),
       total: `$${totalAmount.toFixed(0)}`,
       items: cartItems,
       shippingData,
@@ -72,7 +77,10 @@ const ConfirmacionPage: React.FC = () => {
 
     // Verificar que la orden no esté duplicada
     const alreadyExists = existingOrders.some(
-      (order) => JSON.stringify(order) === JSON.stringify(newOrder)
+      (order) =>
+        order.total === newOrder.total &&
+        JSON.stringify(order.items) === JSON.stringify(newOrder.items) &&
+        JSON.stringify(order.shippingData) === JSON.stringify(newOrder.shippingData)
     );
     if (!alreadyExists) {
       const updatedOrders = [...existingOrders, newOrder];
@@ -127,6 +135,9 @@ const ConfirmacionPage: React.FC = () => {
         <p>Ciudad: {shippingData.city}</p>
         <p>País: {shippingData.country}</p>
         <p>Teléfono: {shippingData.phone}</p>
+        <div className='mt-2'>
+          <Button text="ver Orden" onClick={handleButtonClick} />
+        </div>
       </div>
     </div>
   );

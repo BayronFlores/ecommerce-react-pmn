@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { useTheme } from '../../context/ThemeContext';
 
 const AccountNav = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     logout(); // borra el usuario del contexto y del localStorage
@@ -14,6 +16,17 @@ const AccountNav = () => {
     <div className="h-screen w-50 bg-white relative flex overflow-hidden">
       {/* Sidebar */}
       <aside className="h-full w-50 flex flex-col space-y-10 items-start justify-center relative bg-gray-800 text-white">
+        <div className="absolute top-4 right-4">
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={theme === 'dark'}
+              onChange={toggleTheme}
+              className="form-checkbox h-5 w-5"
+            />
+            <span className="text-xs">{theme === 'dark' ? 'Modo oscuro' : 'Modo claro'}</span>
+          </label>
+        </div>
         <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
           <Link to="/Cuenta" className="flex items-center space-x-4 px-4 py-2">
             <i className="fas fa-home text-2xl"></i>

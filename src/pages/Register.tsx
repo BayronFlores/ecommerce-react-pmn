@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/Login.css'; 
-
 import { UserService } from '../services/UserService'; // importa tu servicio
 import { UserData } from '../data/userData';
+import { notifyError, notifyInfo } from '../utils/toastConfig';
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -14,11 +14,11 @@ const Register: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden');
+      notifyError('Las contraseñas no coinciden');
       return;
     }
     if (!termsAccepted) {
-      alert('Debe aceptar los términos y condiciones');
+      ('Debe aceptar los términos y condiciones');
       return;
     }
 
@@ -31,7 +31,7 @@ const Register: React.FC = () => {
 
     const result = UserService.register(newUser);
 
-    alert(result.message);
+    notifyInfo(result.message);
 
     if (result.success) {
       // Limpiar el formulario

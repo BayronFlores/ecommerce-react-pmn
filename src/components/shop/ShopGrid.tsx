@@ -37,7 +37,7 @@ const ShopGrid = ({ productos, className }: ShopGridProps) => {
       {productos.map((producto) => (
         <div
           key={producto.id}
-          className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl dark:bg-gray-800 dark:border-gray-700"
+          className=" w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl dark:bg-gray-800 dark:border-gray-700"
         >
           <a href="#">
             <img

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/Login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 // import mockUsers from '../data/userData';
 import { UserService } from '../services/UserService';
 import useAuth from '../hooks/useAuth';
+import { notifyError } from '../utils/toastConfig';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     login(foundUser);
     navigate('/cuenta');
   } else {
-    setError('Correo o contraseña incorrectos');
+    notifyError('Correo o contraseña incorrectos');
   }
 };
 
@@ -31,7 +31,6 @@ const Login: React.FC = () => {
       <div className="login-box">
         <form onSubmit={handleSubmit}>
           <h2 className="h2">Login</h2>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
           <div className="input-box">
             <span className="icon">
               <i className="bx bx-envelope"></i>
@@ -69,9 +68,6 @@ const Login: React.FC = () => {
             <p>
               No tienes una cuenta? <a href="/registrarse">Registrarme</a>
             </p>
-            <Link to="/cuenta" style={{ marginLeft: '1rem' }}>
-              cuenta
-            </Link>
           </div>
         </form>
       </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import Button from '../components/UI/Button';
 import '../styles/cart.css';
+import { notifySuccess } from '../utils/toastConfig';
 
 const Cart: React.FC = () => {
   const cartContext = useContext(CartContext);
@@ -37,6 +38,7 @@ const Cart: React.FC = () => {
     cartItems.forEach((item, index) => {
       updateItemQuantity(item.id, tempQuantities[index]);
     });
+     notifySuccess('Carrito actualizado');
   };
 
   const getProductPrice = (item: any) => {

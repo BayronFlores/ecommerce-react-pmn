@@ -47,7 +47,7 @@ const handleSaveClick = () => {
   return (
     <div className="container flex">
       <AccountNav />
-      <div className="profile-container flex-1 p-6">
+      <div className="profile-container ">
         <div className="profile-card">
           <h2 className="profile-title">Ajustes de Cuenta</h2>
           <div className="profile-content">

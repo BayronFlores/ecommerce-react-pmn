@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import AccountNav from '../../components/Layout/AccountNav';
 import '../../styles/Dashboard.css';
 import useAuth from '../../hooks/useAuth';
@@ -32,7 +33,7 @@ const Dashboard = () => {
           .
         </p>
 
-        <div className="dashboard-grid">
+        <div className="dashboard-grid ">
           <div className="dashboard-card">
             <h3 className="card-title">INFORMACIÓN DE LA CUENTA</h3>
             <div className="account-info">
@@ -52,17 +53,13 @@ const Dashboard = () => {
               <strong>Correo electrónico:</strong> {user.email}
             </div>
             <div>
-              <strong>Sec Correo electrónico:</strong> {user.secondaryEmail || 'No disponible'}
-            </div>
-            <div>
               <strong>Teléfono:</strong> {user.phoneNumber || 'No disponible'}
             </div>
-            <button
-              className="dashboard-button"
-              onClick={() => (window.location.href = '/Cuenta/Perfil')}
-            >
-              EDITAR CUENTA
-            </button>
+            <div className="mt-6 mb-6">
+              <Link to="/Cuenta/Perfil" className="dashboard-button">
+                EDITAR CUENTA
+              </Link>
+            </div>
           </div>
 
           <div className="dashboard-card">
@@ -77,14 +74,13 @@ const Dashboard = () => {
               <strong>Teléfono:</strong> {user.phoneNumber || 'No disponible'}
             </div>
             <div>
-              <strong>Correo electrónico:</strong> {user.secondaryEmail || user.email}
+              <strong>Correo electrónico:</strong> {user.email}
             </div>
-            <button
-              className="dashboard-button"
-              onClick={() => (window.location.href = '/Cuenta/Perfil')}
-            >
-              EDITAR DIRECCIÓN
-            </button>
+            <div className="mt-6 mb-6">
+              <Link to="/Cuenta/Perfil" className="dashboard-button">
+                EDITAR DIRECCIÓN
+              </Link>
+            </div>
           </div>
         </div>
       </div>

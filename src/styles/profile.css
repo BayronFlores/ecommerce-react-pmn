@@ -9,11 +9,11 @@ h2{
 }
 
 .profile-container {
-  @apply p-8 flex justify-center ;
+  @apply p-8 flex justify-center mx-auto ;
 }
 
 .profile-card {
-  @apply w-7/10 bg-gray-900 border-blue-700 border  rounded-lg p-8 shadow-lg;
+  @apply w-full bg-gray-900 border-blue-700 border  rounded-lg p-8 shadow-lg;
 }
 
 .profile-title {

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { productos } from '../../data/productos';
 import { CartContext } from '../../context/CartContext'; // Asegúrate de importar tu contexto
+import { notifySuccess } from '../../utils/toastConfig';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,8 +28,10 @@ const handleAddToCart = () => {
     image: producto.image,
     subtotal: Number(producto.price.replace('$', '')),
     priceDiscount: producto.priceDiscount ?? null, // Asignar null si no hay descuento
+    porDiscount: producto.porDiscount ?? 0, // Asignando un valor por defecto si no existe
   });
-  alert('Producto agregado al carrito!');
+
+  notifySuccess('Producto agregado al carrito!');
 };
 
   return (

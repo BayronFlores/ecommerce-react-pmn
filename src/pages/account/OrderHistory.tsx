@@ -78,11 +78,11 @@ const OrderHistory: React.FC = () => {
             <table className="order-table w-full border-collapse">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="px-4 py-2">ORDEN ID</th>
-                  <th className="px-4 py-2">ESTADO</th>
-                  <th className="px-4 py-2">FECHA</th>
-                  <th className="px-4 py-2">TOTAL</th>
-                  <th className="px-4 py-2">ACCIÓN</th>
+                  <th className="text-left px-6 py-3">ORDEN ID</th>
+                  <th className="text-left px-6 py-3">ESTADO</th>
+                  <th className="text-left px-6 py-3">FECHA</th>
+                  <th className="text-left px-6 py-3">TOTAL</th>
+                  <th className="text-left px-6 py-3">ACCIÓN</th>
                 </tr>
               </thead>
               <tbody>

@@ -4,23 +4,26 @@ import AppRoutes from './routes/AppRoutes';
 import AccountRoutes from './routes/AccountRoutes';
 import NotFound from './pages/NotFound';
 import { CartProvider } from './context/CartContext';
+import { ToastContainer } from 'react-toastify';
+import { Fragment } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
-    <CartProvider>
-      <Routes>
-        <Route path="/" element={<PublicLayout />}>
-          {/* Rutas públicas (inicio, login, shop, etc.) */}
-          {AppRoutes}
-
-          {/* Rutas privadas (account) */}
-          <Route path="Cuenta">{AccountRoutes}</Route>
-
-          {/* Ruta no encontrada */}
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </CartProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <Fragment>
+          <ToastContainer />
+          <Routes>
+            <Route path="/" element={<PublicLayout />}>
+              {AppRoutes}
+              <Route path="Cuenta">{AccountRoutes}</Route>
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Fragment>
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 

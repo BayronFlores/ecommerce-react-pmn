@@ -1,11 +1,15 @@
 @import 'tailwindcss';
 
 main{
-  @apply dark:bg-gray-700;
+  @apply bg-gray-300 dark:bg-gray-700;
+}
+
+.p{
+  @apply dark:text-white;
 }
 
 .login {
-  @apply flex items-center justify-center h-[80vh] p-5;
+  @apply flex items-center justify-center h-[90vh]  p-10;
 }
 
 .login-box {

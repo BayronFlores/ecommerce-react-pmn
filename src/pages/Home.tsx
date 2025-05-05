@@ -1,13 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Home.module.css';
 import { benefits } from '../data/HomeData';
 import { productos } from '../data/productos';
 import Button from '../components/UI/Button';
 import ShopGrid from '../components/shop/ShopGrid';
+import { notifySuccess} from '../utils/toastConfig';
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const handleButtonClick = () => {
-    alert('¡Comprando ahora!');
+    notifySuccess('¡Comprando ahora!');
+    navigate('/tienda');
   };
 
   // Ordena los productos por la cantidad de reseñas de mayor a menor y toma los primeros 8
@@ -44,7 +48,7 @@ const Home: React.FC = () => {
             <div className={styles.offerInfo}>
               <h4 className={styles.offerTitle}>Nuevo Google Pixel 6 Pro</h4>
               <div className={styles.offerPrice}>$799 USD</div>
-              <Button text="Comprar ahora" onClick={handleButtonClick} />
+              <Button text="Comprar" onClick={handleButtonClick} />
             </div>
             <div className={styles.offerImageContainer}>
               <img
@@ -67,7 +71,7 @@ const Home: React.FC = () => {
             <div className={styles.offerInfo}>
               <h4 className={styles.offerTitle}>Xiaomi FlipBuds Pro</h4>
               <div className={styles.offerPrice}>$229 USD</div>
-              <Button text="Comprar ahora" onClick={handleButtonClick} />
+              <Button text="Comprar" onClick={handleButtonClick} />
             </div>
           </div>
         </div>
