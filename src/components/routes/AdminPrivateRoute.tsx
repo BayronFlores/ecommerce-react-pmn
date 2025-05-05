@@ -5,7 +5,7 @@ const AdminPrivateRoute = () => {
   const { user } = useAuth();
 
   if (!user || user.role !== 'admin') {
-    return <Navigate to="/admin" replace />;
+    return <Navigate to="admin" replace />;
   }
 
   return <Outlet />;
