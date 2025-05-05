@@ -5,6 +5,7 @@ import {useNavigate } from 'react-router-dom';
 import { UserService } from '../services/UserService';
 import useAuth from '../hooks/useAuth';
 import { notifyError } from '../utils/toastConfig';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -66,7 +67,7 @@ const Login: React.FC = () => {
           </button>
           <div className="register-link">
             <p>
-              No tienes una cuenta? <a href="/registrarse">Registrarme</a>
+              No tienes una cuenta? <Link to="/registrarse">Registrarme</Link>
             </p>
           </div>
         </form>

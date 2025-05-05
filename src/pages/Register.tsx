@@ -3,6 +3,7 @@ import '../styles/Login.css';
 import { UserService } from '../services/UserService'; // importa tu servicio
 import { UserData } from '../data/userData';
 import { notifyError, notifyInfo } from '../utils/toastConfig';
+import { Link } from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -50,35 +51,19 @@ const Register: React.FC = () => {
           <h2 className="h2">Registro</h2>
 
           <div className="input-box">
-            <span className="icon">
-              {/* <ion-icon name="person"></ion-icon> */}
-            </span>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <span className="icon">{/* <ion-icon name="person"></ion-icon> */}</span>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
             <label>Nombre completo</label>
           </div>
 
           <div className="input-box">
-            <span className="icon">
-              {/* <ion-icon name="mail"></ion-icon> */}
-            </span>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <span className="icon">{/* <ion-icon name="mail"></ion-icon> */}</span>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <label>Correo electrónico</label>
           </div>
 
           <div className="input-box">
-            <span className="icon">
-              {/* <ion-icon name="lock-closed"></ion-icon> */}
-            </span>
+            <span className="icon">{/* <ion-icon name="lock-closed"></ion-icon> */}</span>
             <input
               type="password"
               value={password}
@@ -89,9 +74,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="input-box">
-            <span className="icon">
-              {/* <ion-icon name="lock-closed-outline"></ion-icon> */}
-            </span>
+            <span className="icon">{/* <ion-icon name="lock-closed-outline"></ion-icon> */}</span>
             <input
               type="password"
               value={confirmPassword}
@@ -119,7 +102,7 @@ const Register: React.FC = () => {
 
           <div className="register-link">
             <p>
-              ¿Ya tienes una cuenta? <a href="login">Iniciar sesión</a>
+              ¿Ya tienes una cuenta? <Link to="/login">Registrarme</Link>
             </p>
           </div>
         </form>
