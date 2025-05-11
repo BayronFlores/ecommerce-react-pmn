@@ -77,13 +77,13 @@ const Cart: React.FC = () => {
           <>
             <table className="cart-table">
               <thead>
-                <tr>
-                  <th>PRODUCTOS</th>
-                  <th>PRECIO</th>
-                  <th>CANTIDAD</th>
-                  <th>SUB-TOTAL</th>
-                  <th>ACCIONES</th> {/* NUEVA COLUMNA */}
-                </tr>
+              <tr>
+                <th>PRODUCTOS</th>
+                <th>PRECIO</th>
+                <th>CANTIDAD</th>
+                <th>SUB-TOTAL</th>
+                <th>ACCIONES</th>
+              </tr>
               </thead>
               <tbody>
                 {cartItems.map((item, i) => (

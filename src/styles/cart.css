@@ -1,28 +1,23 @@
 @import 'tailwindcss';
 
-main{
-  @apply dark:bg-gray-700;
+main {
+  @apply min-h-screen dark:bg-gray-700;
 }
 
 .cart-container {
-  @apply flex gap-8 p-20 font-sans;
+  @apply flex flex-col gap-8 p-4 md:p-8 lg:p-20 font-sans md:flex-row;
 }
 
-main{
-  @apply dark:bg-gray-700;
-}
-
-/* Tabla de productos */
 .cart-products {
-  @apply flex-2 border  rounded-lg p-4 bg-gray-900 border-blue-700  text-white;
+  @apply w-full md:flex-[2] border rounded-lg p-4 bg-gray-900 border-blue-700 text-white overflow-x-auto;
 }
 
 .cart-products h3 {
-  @apply mb-4;
+  @apply mb-4 text-lg;
 }
 
 .cart-table {
-  @apply w-full border-collapse;
+  @apply w-full border-collapse text-sm min-w-[600px];
 }
 
 .cart-table thead {
@@ -31,23 +26,23 @@ main{
 
 .cart-table th,
 .cart-table td {
-  @apply p-2.5 text-center border-b border-gray-200;
+  @apply p-2 text-center border-b border-gray-200;
 }
 
 .cart-item {
-  @apply flex items-center gap-2.5 text-left;
+  @apply flex items-center gap-2 text-left;
 }
 
 .cart-old-price {
-  @apply line-through text-gray-500 mr-1.5;
+  @apply line-through text-gray-500 mr-1;
 }
 
 .quantity-control {
-  @apply inline-flex items-center border border-gray-300 ;
+  @apply inline-flex items-center border border-gray-300;
 }
 
 .quantity-control button {
-  @apply px-2.5 py-1 bg-gray-400 border-none;
+  @apply px-2 py-1 bg-gray-400 border-none;
 }
 
 .quantity-control span {
@@ -55,19 +50,16 @@ main{
 }
 
 .cart-actions {
-  @apply flex justify-between mt-4;
+  @apply flex flex-col md:flex-row justify-between mt-4 gap-4;
 }
 
-
-
-/* Totales y cupón */
 .cart-summary {
-  @apply flex flex-col gap-4 flex-1;
+  @apply w-full md:flex-1 flex flex-col gap-4;
 }
 
 .cart-totals,
 .cart-coupon {
-  @apply border  rounded-lg p-4 bg-gray-900 border-blue-700 text-white;
+  @apply border rounded-lg p-4 bg-gray-900 border-blue-700 text-white;
 }
 
 .cart-totals h4,
@@ -88,7 +80,7 @@ main{
 }
 
 .cart-coupon input {
-  @apply w-[96%] py-2 mb-2 rounded border border-gray-300;
+  @apply w-full py-2 mb-2 rounded border border-gray-300;
 }
 
 .cart-coupon button {

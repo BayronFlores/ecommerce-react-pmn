@@ -55,59 +55,116 @@ const OrderHistory: React.FC = () => {
   };
 
   return (
-    <div className="order-container flex">
+    <div className="order-container flex flex-row gap-4">
       <AccountNav />
+      <div className="flex justify-center">
+        <div className="bg-white w-full dark:bg-slate-900 rounded-xl shadow-lg m-4 ">
+          <div className="px-6 py-5 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <h1 className="text-xl font-semibold text-slate-800 dark:text-slate-200">
+                Historial de Ordenes
+              </h1>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">Completado</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-violet-400"></div>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">Pendiente</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                    {orders.length > 0 && (
+                      <button
+                        onClick={handleClearOrders}
+                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                      >
+                        Eliminar historial
+                      </button>
+                    )}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div className="content-area flex-1 p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold">Historial de órdenes</h1>
-          {orders.length > 0 && (
-            <button
-              onClick={handleClearOrders}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-            >
-              Eliminar historial
-            </button>
+          {orders.length === 0 ? (
+            <p>No hay órdenes registradas.</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <tr>
+                    <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Oden ID
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Fecha
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Estado
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Total
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Detalle de compra
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+                  {orders.map((order) => (
+                    <tr key={order.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-violet-100 to-slate-100 dark:from-violet-900 dark:to-slate-800 flex items-center justify-center">
+                            <span className="text-sm font-medium text-slate-600 dark:text-slate-300"></span>
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                              {order.id}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className="text-sm text-slate-600 dark:text-slate-300">
+                          {order.date}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></div>{' '}
+                          {order.status}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-slate-600 dark:text-slate-400">
+                            {order.total}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-slate-600 dark:text-slate-400">
+                            <button
+                              onClick={() => handleViewDetails(order)}
+                              className="text-blue-600 hover:underline"
+                            >
+                              Detalles
+                            </button>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
-
-        {orders.length === 0 ? (
-          <p>No hay órdenes registradas.</p>
-        ) : (
-          <div className="order-table-container overflow-auto">
-            <table className="order-table w-full border-collapse">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="text-left px-6 py-3">ORDEN ID</th>
-                  <th className="text-left px-6 py-3">ESTADO</th>
-                  <th className="text-left px-6 py-3">FECHA</th>
-                  <th className="text-left px-6 py-3">TOTAL</th>
-                  <th className="text-left px-6 py-3">ACCIÓN</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order.id} className="border-b">
-                    <td className="px-4 py-2">{order.id}</td>
-                    <td className="px-4 py-2" style={{ color: order.statusColor }}>
-                      {order.status}
-                    </td>
-                    <td className="px-4 py-2">{order.date}</td>
-                    <td className="px-4 py-2">{order.total}</td>
-                    <td className="px-4 py-2">
-                      <button
-                        onClick={() => handleViewDetails(order)}
-                        className="text-blue-600 hover:underline"
-                      >
-                        Ver Detalles
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
       </div>
     </div>
   );

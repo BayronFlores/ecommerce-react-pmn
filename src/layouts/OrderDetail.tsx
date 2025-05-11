@@ -9,51 +9,56 @@ const OrderDetail: React.FC = () => {
     return <div>No se encontraron detalles de la orden.</div>;
   }
 
-  const { id, status, statusColor, date, total, items, shippingData } = state.order;
+  const { id, date, total, items, shippingData } = state.order;
 
   return (
-    <div className="max-w-4xl mx-auto  p-8">
-    <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-      <button onClick={() => navigate(-1)} className="text-blue-500 underline mb-4">
-        ← Volver
-      </button>
-      <h1 className="text-2xl font-semibold mb-4">Detalles de la Orden {id}</h1>
-
-      <div className="mb-6">
-        <p>
-          <strong>Estado:</strong> <span style={{ color: statusColor }}>{status}</span>
-        </p>
-        <p>
-          <strong>Fecha:</strong> {date}
-        </p>
-        <p>
-          <strong>Total:</strong> {total}
-        </p>
+    <div className="bg-white rounded-lg shadow-lg px-8 py-10  max-w-xl mx-auto">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center">
+          <div className="text-gray-700 font-semibold text-lg">
+            <button onClick={() => navigate(-1)} className="text-blue-500 underline mb-4">
+              ← Volver
+            </button>
+          </div>
+        </div>
+        <div className="text-gray-700">
+          <div className="font-bold text-xl mb-2">Detalles</div>
+          <div className="text-sm">Fecha: {date}</div>
+          <div className="text-sm">N° orden: {id}</div>
+        </div>
       </div>
-
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Productos:</h2>
-        <ul className="space-y-2">
+      <div className="border-b-2 border-gray-300 pb-8 mb-8">
+        <h1 className="text-2xl font-bold mb-4">Datos de Envio</h1>
+        <div className="text-gray-700 mb-2">Nombre: {shippingData.name}</div>
+        <div className="text-gray-700 mb-2">Direccion: {shippingData.address}</div>
+        <div className="text-gray-700 mb-2">Ciudad: {shippingData.city}</div>
+        <div className="text-gray-700">pais: {shippingData.country}</div>
+        <div className="text-gray-700">telefono: {shippingData.phone}</div>
+      </div>
+      <table className="w-full text-left mb-8">
+        <thead>
+          <tr>
+            <th className="text-gray-700 font-bold uppercase py-2">Descripcion</th>
+            <th className="text-gray-700 font-bold uppercase py-2">Cantidad</th>
+            <th className="text-gray-700 font-bold uppercase py-2">Precio</th>
+            <th className="text-gray-700 font-bold uppercase py-2">Total</th>
+          </tr>
+        </thead>
+        <tbody>
           {items.map((item: any) => (
-            <li key={item.id} className="flex justify-between border-b pb-1">
-              <span>
-                {item.name} (x{item.quantity})
-              </span>
-              <span>{item.priceDiscount || item.price}</span>
-            </li>
+            <tr key={item.id}>
+              <td className="py-4 text-gray-700">{item.name}</td>
+              <td className="py-4 text-gray-700">{item.quantity}</td>
+              <td className="py-4 text-gray-700">{item.priceDiscount || item.price}</td>
+              <td className="py-4 text-gray-700">{item.priceDiscount || item.price}</td>
+            </tr>
           ))}
-        </ul>
+        </tbody>
+      </table>
+      <div className="flex justify-end mb-8">
+        <div className="text-gray-700 mr-2">Total:</div>
+        <div className="text-gray-700 font-bold text-xl">{total}</div>
       </div>
-
-      <div>
-        <h2 className="text-xl font-semibold mb-2">Datos de Envío:</h2>
-        <p>Nombre: {shippingData.name}</p>
-        <p>Dirección: {shippingData.address}</p>
-        <p>Ciudad: {shippingData.city}</p>
-        <p>País: {shippingData.country}</p>
-        <p>Teléfono: {shippingData.phone}</p>
-      </div>
-    </div>
     </div>
   );
 };

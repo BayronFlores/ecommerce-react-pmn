@@ -13,7 +13,7 @@ const AccountNav = () => {
   };
 
   return (
-    <div className="h-screen w-50 bg-white relative flex overflow-hidden">
+    <div className=" min-h-screen w-40 bg-white relative flex overflow-hidden">
       {/* Sidebar */}
       <aside className="h-full w-50 flex flex-col space-y-10 items-start justify-center relative bg-gray-800 text-white">
         <div className="absolute top-4 right-4">

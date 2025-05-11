@@ -6,7 +6,7 @@
 
 /* Sección Promociones */
 .promoSection {
-  @apply w-[70%] flex gap-4 flex-wrap mx-auto;
+  @apply w-full md:w-[90%] lg:w-[70%] flex flex-col lg:flex-row gap-4 flex-wrap mx-auto;
 }
 
 /* Banner Principal */
@@ -15,7 +15,7 @@
 }
 
 .mainBannerText {
-  @apply max-w-1/2;
+  @apply w-full lg:w-1/2;
 }
 
 .mainBannerHighlight {
@@ -44,7 +44,7 @@
 }
 
 .offerCardRow {
-  @apply  bg-white text-black dark:text-white p-4 rounded-lg flex flex-wrap items-center border-2 gap-4 border-blue-700 dark:bg-gray-900;
+  @apply  bg-white text-black dark:text-white p-4 rounded-lg  flex flex-col sm:flex-row items-center border-2 gap-4 border-blue-700 dark:bg-gray-900;
 }
 
 .offerInfo {
