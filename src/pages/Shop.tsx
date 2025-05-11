@@ -8,16 +8,27 @@ import { productos } from '@/data/productos';
 const Shop = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+  const [priceRange, setPriceRange] = useState<{ min: number | ''; max: number | '' }>({
+    min: '',
+    max: '',
+  });
   const [sortOption, setSortOption] = useState('Mas Popular');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 6;
 
   const filterProducts = () => {
     return productos
       .filter((producto) => {
         const matchesCategory = selectedCategory ? producto.category === selectedCategory : true;
         const price = parseFloat(producto.price.replace('$', ''));
-        const matchesPrice = price >= priceRange.min && price <= priceRange.max;
+
+        const matchesMin = priceRange.min === '' || price >= priceRange.min;
+        const matchesMax = priceRange.max === '' || price <= priceRange.max;
+
+        const matchesPrice = matchesMin && matchesMax;
         const matchesSearch = producto.name.toLowerCase().includes(searchTerm.toLowerCase());
+
         return matchesCategory && matchesPrice && matchesSearch;
       })
       .sort((a, b) => {
@@ -30,6 +41,13 @@ const Shop = () => {
       });
   };
 
+  const filteredProducts = filterProducts();
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
   return (
     <div className="min-h-screen bg-gray-200 dark:bg-gray-700 dark:text-white p-4">
       <TopBar
@@ -41,13 +59,26 @@ const Shop = () => {
       <div className="flex flex-col lg:flex-row">
         <SidebarFilters
           selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
+          setSelectedCategory={(cat) => {
+            setSelectedCategory(cat);
+            setCurrentPage(1); // Reinicia paginación al filtrar
+          }}
           priceRange={priceRange}
-          setPriceRange={setPriceRange}
+          setPriceRange={(range) => {
+            setPriceRange(range);
+            setCurrentPage(1); // Reinicia paginación al filtrar
+          }}
         />
         <div className="w-full lg:w-3/4 p-4">
-          <ShopGrid productos={filterProducts()} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center"/>
-          <Pagination />
+          <ShopGrid
+            productos={paginatedProducts}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center"
+          />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </div>
       </div>
     </div>

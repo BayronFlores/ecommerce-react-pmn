@@ -1,22 +1,47 @@
-const Pagination = () => {
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+  const handlePrev = () => {
+    if (currentPage > 1) onPageChange(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) onPageChange(currentPage + 1);
+  };
+
   return (
     <div className="flex justify-center items-center mt-8 space-x-2">
-      <button className="rounded-md border border-slate-300 py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">
+      <button
+        onClick={handlePrev}
+        disabled={currentPage === 1}
+        className="rounded-md border border-slate-300 py-2 px-3 text-sm shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 disabled:opacity-50"
+      >
         ←
       </button>
-      {[1, 2, 3, 4, 5, 6].map((num) => (
+
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
         <button
           key={num}
-          className={`min-w-9 rounded-md py-2 px-3 text-center text-sm transition-all shadow-sm ${
-            num === 2
-              ? 'bg-orange-500 text-white hover:bg-orange-400 focus:bg-orange-700 hover:shadow-lg focus:shadow-none'
-              : 'border border-slate-300 text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
-          } ml-2`}
+          onClick={() => onPageChange(num)}
+          className={`min-w-9 rounded-md py-2 px-3 text-sm shadow-sm ml-2 ${
+            num === currentPage
+              ? 'bg-orange-500 text-white'
+              : 'border border-slate-300 text-slate-600 hover:text-white hover:bg-slate-800'
+          }`}
         >
           {num.toString().padStart(2, '0')}
         </button>
       ))}
-      <button className="min-w-9 rounded-md border border-slate-300 py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">
+
+      <button
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+        className="rounded-md border border-slate-300 py-2 px-3 text-sm shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 disabled:opacity-50"
+      >
         →
       </button>
     </div>
