@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import AccountNav from '../../components/Layout/AccountNav';
-import '../../styles/Dashboard.css';
-import useAuth from '../../hooks/useAuth';
+import AccountNav from '@/components/Layout/AccountNav';
+import '@/styles/Dashboard.css';
+import useAuth from '@/hooks/useAuth';
 
 const Dashboard = () => {
   const { user } = useAuth();

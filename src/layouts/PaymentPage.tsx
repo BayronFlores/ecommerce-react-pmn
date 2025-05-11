@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext'; // Asegúrate de importar el CartContext
-import Button from '../components/UI/Button';
+import { CartContext } from '@/context/CartContext'; // Asegúrate de importar el CartContext
+import Button from '@/components/UI/Button';
 interface CartItem {
   id: string;
   name: string;

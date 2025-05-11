@@ -1,4 +1,4 @@
-import Button from '../UI/Button';
+import Button from '@/components/UI/Button';
 import { useNavigate } from 'react-router-dom';
 
 interface Producto {

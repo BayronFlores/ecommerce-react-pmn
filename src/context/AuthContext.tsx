@@ -1,9 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { UserData } from '../data/userData';
+import { UserData } from '@/data/userData';
 
 interface AuthContextType {
   user: UserData | null;
-  setUser: React.Dispatch<React.SetStateAction<UserData | null>>; 
+  isAdmin: boolean;
+  setUser: (user: UserData | null) => void; // Asegúrate de que setUser está en el contexto
   login: (userData: UserData) => void;
   logout: () => void;
 }
@@ -11,28 +12,40 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserData | null>(null); // Estado inicial del usuario de forma local
+  const [user, setUser] = useState<UserData | null>(null);
+
+  // Asegúrate de que isAdmin depende del rol del usuario
+  const isAdmin = user ? user.role === 'admin' : false;
 
   useEffect(() => {
-    // Cargar sesión desde localStorage (opcional)
     const storedUser = localStorage.getItem('user');
+    const storedAdmin = localStorage.getItem('admin');
+
     if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Si hay un usuario guardado, lo cargamos en el estado
+      setUser(JSON.parse(storedUser));
+    } else if (storedAdmin) {
+      setUser(JSON.parse(storedAdmin));
     }
-  }, []); // Solo se ejecuta una vez al montar el componente
+  }, []);
 
   const login = (userData: UserData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // Guardar el usuario en localStorage del navegador
+
+    if (userData.role === 'admin') {
+      localStorage.setItem('admin', JSON.stringify(userData));
+    } else {
+      localStorage.setItem('user', JSON.stringify(userData));
+    }
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
+    localStorage.removeItem('admin');
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout }}>
+    <AuthContext.Provider value={{ user, isAdmin, setUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

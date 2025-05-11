@@ -1,4 +1,4 @@
-import mockUsers, { UserData } from '../data/userData';
+import mockUsers, { UserData } from '@/data/userData';
 
 const STORAGE_KEY = 'users';
 

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 
 // Clases organizadas en constantes
 const navClasses = 'border-gray-200 bg-gray-900';

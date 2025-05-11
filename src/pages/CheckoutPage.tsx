@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
-import { stripePromise } from '../utils/stripe';
-import { CartContext } from '../context/CartContext';
-import StripePaymentForm from '../components/stripe/StripePaymentForm';
-import useAuth from '../hooks/useAuth'; // Importamos useAuth
+import { stripePromise } from '@/utils/stripe';
+import { CartContext } from '@/context/CartContext';
+import StripePaymentForm from '@/components/stripe/StripePaymentForm';
+import useAuth from '@/hooks/useAuth'; // Importamos useAuth
 
 const CheckoutPage: React.FC = () => {
   const cartContext = useContext(CartContext);

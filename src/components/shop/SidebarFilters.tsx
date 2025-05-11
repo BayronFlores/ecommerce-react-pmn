@@ -5,7 +5,7 @@ interface SidebarFiltersProps {
   setPriceRange: (range: { min: number; max: number }) => void;
 }
 
-import { categorias } from '../../data/shopData';
+import { categorias } from '@/data/shopData';
 
 const SidebarFilters = ({
   selectedCategory,

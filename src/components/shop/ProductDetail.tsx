@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { productos } from '../../data/productos';
-import { CartContext } from '../../context/CartContext'; // Asegúrate de importar tu contexto
-import { notifySuccess } from '../../utils/toastConfig';
+import { productos } from '@/data/productos';
+import { CartContext } from '@/context/CartContext'; // Asegúrate de importar tu contexto
+import { notifySuccess } from '@/utils/toastConfig';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();

@@ -7,7 +7,7 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
-import { notifySuccess, notifyError } from '../../utils/toastConfig';
+import { notifySuccess, notifyError } from '@/utils/toastConfig';
 
 type StripePaymentFormProps = {
   totalAmount: number;

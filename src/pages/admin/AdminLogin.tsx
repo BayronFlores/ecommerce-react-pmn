@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import mockUsers from '../../data/userData'; // Ajusta ruta si es necesario
+import useAuth from '@/hooks/useAuth';
+import mockUsers from '@/data/userData'; // Ajusta ruta si es necesario
 
 const AdminLogin = () => {
   const { login } = useAuth();

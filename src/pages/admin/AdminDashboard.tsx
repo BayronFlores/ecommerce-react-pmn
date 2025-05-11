@@ -1,6 +1,6 @@
-import useAuth from '../../hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import mockUsers from '../../data/userData';
+import mockUsers from '@/data/userData';
 
 const AdminDashboard = () => {
   const { logout } = useAuth();

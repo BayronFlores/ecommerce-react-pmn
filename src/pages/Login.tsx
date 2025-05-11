@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import '../styles/Login.css';
+import '@/styles/Login.css';
 import {useNavigate } from 'react-router-dom';
-// import mockUsers from '../data/userData';
-import { UserService } from '../services/UserService';
-import useAuth from '../hooks/useAuth';
-import { notifyError } from '../utils/toastConfig';
+// import mockUsers from '@/data/userData';
+import { UserService } from '@/services/UserService';
+import useAuth from '@/hooks/useAuth';
+import { notifyError } from '@/utils/toastConfig';
 import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {

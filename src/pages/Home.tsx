@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/Home.module.css';
-import { benefits } from '../data/HomeData';
-import { productos } from '../data/productos';
-import Button from '../components/UI/Button';
-import ShopGrid from '../components/shop/ShopGrid';
-import { notifySuccess} from '../utils/toastConfig';
+import styles from '@/styles/Home.module.css';
+import { benefits } from '@/data/HomeData';
+import { productos } from '@/data/productos';
+import Button from '@/components/UI/Button';
+import ShopGrid from '@/components/shop/ShopGrid';
+import { notifySuccess} from '@/utils/toastConfig';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

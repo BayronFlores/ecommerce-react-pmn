@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import SidebarFilters from '../components/shop/SidebarFilters';
-import TopBar from '../components/shop/TopBar';
-import ShopGrid from '../components/shop/ShopGrid';
-import Pagination from '../components/Layout/Pagination';
-import { productos } from '../data/productos';
+import SidebarFilters from '@/components/shop/SidebarFilters';
+import TopBar from '@/components/shop/TopBar';
+import ShopGrid from '@/components/shop/ShopGrid';
+import Pagination from '@/components/Layout/Pagination';
+import { productos } from '@/data/productos';
 
 const Shop = () => {
   const [searchTerm, setSearchTerm] = useState('');

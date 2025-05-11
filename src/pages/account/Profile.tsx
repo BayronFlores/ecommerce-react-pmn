@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/profile.css';
-import AccountNav from '../../components/Layout/AccountNav';
-import useAuth from '../../hooks/useAuth';
-import { UserService } from '../../services/UserService';
-import { UserData } from '../../data/userData';
+import '@/styles/profile.css';
+import AccountNav from '@/components/Layout/AccountNav';
+import useAuth from '@/hooks/useAuth';
+import { UserService } from '@/services/UserService';
+import { UserData } from '@/data/userData';
 
 const Profile = () => {
   const { user, setUser } = useAuth(); // Ahora puedes acceder a setUser

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import { useTheme } from '../../context/ThemeContext';
+import useAuth from '@/hooks/useAuth';
+import { useTheme } from '@/context/ThemeContext';
 
 const AccountNav = () => {
   const { logout } = useAuth();

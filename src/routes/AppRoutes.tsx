@@ -1,15 +1,15 @@
 import { Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import Cart from '../layouts/Cart';
-import Shop from '../pages/Shop';
-import PrivateRoute from '../components/routes/PrivateRoute';
-import PublicOnlyRoute from '../components/routes/PublicOnlyRoute';
+import Home from '@/pages/Home';
+import Login from '@/pages/Login';
+import Register from '@/pages/Register';
+import Cart from '@/layouts/Cart';
+import Shop from '@/pages/Shop';
+import PrivateRoute from '@/components/routes/PrivateRoute';
+import PublicOnlyRoute from '@/components/routes/PublicOnlyRoute';
 import AdminRoutes from './AdminRoutes';
-import CheckoutPage from '../pages/CheckoutPage';
-import ProductDetail from '../components/shop/ProductDetail';
-import PaymentPage from '../layouts/PaymentPage';
+import CheckoutPage from '@/pages/CheckoutPage';
+import ProductDetail from '@/components/shop/ProductDetail';
+import PaymentPage from '@/layouts/PaymentPage';
 
 const AppRoutes = (
   <>

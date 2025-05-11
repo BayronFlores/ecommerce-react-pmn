@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../styles/Login.css'; 
-import { UserService } from '../services/UserService'; // importa tu servicio
-import { UserData } from '../data/userData';
-import { notifyError, notifyInfo } from '../utils/toastConfig';
+import '@/styles/Login.css'; 
+import { UserService } from '@/services/UserService'; // importa tu servicio
+import { UserData } from '@/data/userData';
+import { notifyError, notifyInfo } from '@/utils/toastConfig';
 import { Link } from 'react-router-dom';
 
 const Register: React.FC = () => {

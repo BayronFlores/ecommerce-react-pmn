@@ -1,9 +1,8 @@
 import { Route } from 'react-router-dom';
-import AdminLogin from '../pages/admin/AdminLogin';
-import AdminDashboard from '../pages/admin/AdminDashboard';
-import AdminLayout from '../layouts/AdminLayout';
-import AdminPrivateRoute from '../components/routes/AdminPrivateRoute';
-
+import AdminLogin from '@/pages/admin/AdminLogin';
+import AdminDashboard from '@/pages/admin/AdminDashboard';
+import AdminLayout from '@/layouts/AdminLayout';
+import AdminPrivateRoute from '@/components/routes/AdminPrivateRoute';
 const AdminRoutes = (
   <Route path="admin">
     <Route index element={<AdminLogin />} />

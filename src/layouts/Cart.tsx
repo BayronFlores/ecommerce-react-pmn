@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
-import Button from '../components/UI/Button';
-import '../styles/cart.css';
-import { notifySuccess } from '../utils/toastConfig';
+import { CartContext } from '@/context/CartContext';
+import Button from '@/components/UI/Button';
+import '@/styles/cart.css';
+import { notifySuccess } from '@/utils/toastConfig';
 
 const Cart: React.FC = () => {
   const cartContext = useContext(CartContext);
