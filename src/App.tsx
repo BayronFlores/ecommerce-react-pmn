@@ -7,9 +7,11 @@ import { CartProvider } from '@/context/CartContext';
 import { ToastContainer } from 'react-toastify';
 import { Fragment } from 'react';
 import { ThemeProvider } from '@/context/ThemeContext';
-
+import { WishlistProvider } from '@/context/WishlistContext';
 function App() {
   return (
+
+    <WishlistProvider>
     <ThemeProvider>
       <CartProvider>
         <Fragment>
@@ -24,6 +26,7 @@ function App() {
         </Fragment>
       </CartProvider>
     </ThemeProvider>
+    </WishlistProvider>
   );
 }
 

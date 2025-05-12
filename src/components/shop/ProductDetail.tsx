@@ -1,13 +1,15 @@
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { productos } from '@/data/productos';
 import { CartContext } from '@/context/CartContext'; // Asegúrate de importar tu contexto
 import { notifySuccess } from '@/utils/toastConfig';
-
+import { useWishlist } from '@/context/WishlistContext';
 const ProductDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const producto = productos.find((p) => p.id === Number(id));
   const cartContext = useContext(CartContext);
+  const { addToWishlist } = useWishlist();
 
   if (!producto) {
     return <div className="text-center text-red-500">Producto no encontrado</div>;
@@ -33,6 +35,35 @@ const handleAddToCart = () => {
 
   notifySuccess('Producto agregado al carrito!');
 };
+
+const handleBuyNow = () => {
+  addToCart({
+    id: producto.id,
+    name: producto.name,
+    price: Number(producto.price.replace('$', '')),
+    quantity: 1,
+    image: producto.image,
+    subtotal: Number(producto.price.replace('$', '')),
+    priceDiscount: producto.priceDiscount ?? null,
+    porDiscount: producto.porDiscount ?? 0,
+  });
+
+  notifySuccess('Producto agregado. Redirigiendo al pago...');
+  navigate('/checkout');
+};
+
+const handleAddToWishlist = () => {
+  addToWishlist({
+    id: producto.id,
+    name: producto.name,
+    price: Number(producto.price.replace('$', '')),
+    image: producto.image,
+    priceDiscount: producto.priceDiscount ?? null,
+    status: producto.status ?? 'IN STOCK', // Asegúrate que el producto tenga esta propiedad
+  });
+  notifySuccess('Producto guardado en tu lista de deseos');
+};
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -94,7 +125,16 @@ const handleAddToCart = () => {
         {/* Controles de cantidad */}
         <div className="flex items-center gap-4 mt-4">
           <div className="flex gap-2">
-            <button className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md shadow">
+            <button
+              onClick={handleAddToWishlist}
+              className="px-6 py-2 border border-orange-500 text-orange-500 hover:bg-orange-50 rounded-md"
+            >
+              Me gusta
+            </button>
+            <button
+              onClick={handleBuyNow}
+              className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md shadow"
+            >
               Comprar Ahora
             </button>
             <button

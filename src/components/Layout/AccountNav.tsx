@@ -47,6 +47,12 @@ const AccountNav = () => {
             <span className="text-xs">Perfil</span>
           </Link>
         </div>
+        <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+          <Link to="/Cuenta/Me_gusta" className="flex items-center space-x-4 px-4 py-2">
+            <i className="fas fa-heart text-2xl"></i>
+            <span className="text-xs">Me gusta</span>
+          </Link>
+        </div>
 
         <div className="h-10 w-full flex items-center cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
           <button

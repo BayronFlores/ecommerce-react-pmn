@@ -77,13 +77,13 @@ const Cart: React.FC = () => {
           <>
             <table className="cart-table">
               <thead>
-              <tr>
-                <th>PRODUCTOS</th>
-                <th>PRECIO</th>
-                <th>CANTIDAD</th>
-                <th>SUB-TOTAL</th>
-                <th>ACCIONES</th>
-              </tr>
+                <tr>
+                  <th>PRODUCTOS</th>
+                  <th>PRECIO</th>
+                  <th>CANTIDAD</th>
+                  <th>SUB-TOTAL</th>
+                  <th>ACCIONES</th>
+                </tr>
               </thead>
               <tbody>
                 {cartItems.map((item, i) => (
@@ -94,10 +94,7 @@ const Cart: React.FC = () => {
                         <div>{item.name}</div>
                       </div>
                     </td>
-                    <td>
-                      ${getProductPrice(item).toFixed(0)}
-                      
-                    </td>
+                    <td>${getProductPrice(item).toFixed(0)}</td>
                     <td>
                       <div className="quantity-control">
                         <button onClick={() => updateQuantity(i, 'decrease')}>−</button>
@@ -156,7 +153,17 @@ const Cart: React.FC = () => {
             <span>Total</span>
             <span>${calculateTotal().toFixed(0)} USD</span>
           </div>
-          <button  onClick={handlecheckout}>PROCEDER AL PAGO →</button>
+          <button
+            onClick={handlecheckout}
+            disabled={cartItems.length === 0}
+            className={`w-full mt-4 py-2 px-4 rounded text-white font-semibold transition duration-300 ${
+              cartItems.length === 0
+                ? 'bg-gray-300 cursor-not-allowed opacity-60'
+                : 'bg-blue-600 hover:bg-blue-700'
+            }`}
+          >
+            PROCEDER AL PAGO →
+          </button>
         </div>
 
         <div className="cart-coupon">
